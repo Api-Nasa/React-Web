@@ -13,5 +13,6 @@ code {
 }
 /* quitar este css */
 .edu{
-  margin-top:1rem;
+  margin-top:3.5rem;
+  background-color: rgb(60, 108, 163);
 }

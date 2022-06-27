@@ -10,11 +10,14 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+    
+    
   }
 }
 
 .App-header {
-  background-color: #282c34;
+ 
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +38,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+.titulo-landing{
+color: rgb(60, 108, 163);
+display: inline-flex;
+margin-left: 2rem;
+
+}
+
+.logo-peq{
+  
+  width:7%;
+  height: auto;
+}
+.titulo{
+  margin-bottom: 2rem;
 }
