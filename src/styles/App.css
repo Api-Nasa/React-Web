@@ -5,6 +5,7 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -40,17 +41,29 @@
   }
 }
 .titulo-landing{
-color: rgb(60, 108, 163);
+color: var(--blue-third);
 display: inline-flex;
-margin-left: 2rem;
+margin-left: 1rem;
 
 }
+
 
 .logo-peq{
   
   width:7%;
   height: auto;
 }
+
+
 .titulo{
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+.api-btn{
+  margin-bottom:3.7rem;
+  background-color: var(--blue-third);
+}
+.datepicker{
+  color:var(--blue-third);
+  
+  background-color: var(--textovergrey);
 }

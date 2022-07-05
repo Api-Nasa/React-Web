@@ -1,4 +1,5 @@
 # React-Web
+<<<<<<< Updated upstream
 
 ## Proyect Web development 2022 API NASA
 
@@ -26,3 +27,6 @@ Hemos decidido hacer el proyecto juntos como práctica de lo que es el trabajo c
 
 
    
+=======
+Proyect Web development 2022
+>>>>>>> Stashed changes
