@@ -17,7 +17,7 @@ export default function Cabecerainicio() {
         <div className="cabecera">
           <img src={atom} className=" logo-speq " alt="gif atom" />
           <h1 className="titulo-landing titulo-cabecera">
-            Proyecto React.js para consumo de Api-Nasa
+            React project to interact with Nasa APIs data
           </h1>
           <div className="botonera-cabecera">
             <button
@@ -25,21 +25,15 @@ export default function Cabecerainicio() {
               type="button"
               className="btn btn-outline-info btn-sm boton-cabecera"
              /*  onClick={(event) =>
-                dispatch({ type: 'CAMBIARNOMBRE', payload: { id: 'cambiar' } })
+                dispatch({
+                  type: 'TODAYPHOTO',
+                  payload: { id: 'cambiar' },
+                })
               } */
             >
-              Boton sin definir{' '}
+              Today's photo{' '}
             </button>
-            <button
-            id="cargar"
-              type="button"
-              className="btn btn-outline-info btn-sm boton-cabecera"
-             /*  onClick={(event) =>
-                dispatch({ type: 'CARGARAPI', payload: { id: 'cargar' } })
-              } */
-            >
-              Prueba para Hook Reducer
-            </button>
+
             <button
               className="btn btn-outline-info btn-sm boton-cabecera"
               type="button"
@@ -49,7 +43,7 @@ export default function Cabecerainicio() {
               aria-expanded="false"
               aria-controls="collapseExample"
             >
-              muestra un mensaje en contenido
+              Choose Photo By Day
             </button>
           </div>
         </div>

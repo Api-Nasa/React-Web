@@ -30,3 +30,18 @@ Hemos decidido hacer el proyecto juntos como práctica de lo que es el trabajo c
 =======
 Proyect Web development 2022
 >>>>>>> Stashed changes
+```const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+ 
+  
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="Main" element={<Main />} />
+      <Route path="*" element={<Error404 />} />
+    </Routes>
+  </BrowserRouter>
+ 
+  
+);
+```

@@ -27,6 +27,9 @@ display: inline flex
    color: rgb(60, 108, 163);
    margin: 0.2rem 1rem;
 }
+.boton-fecha{
+  margin-left:2rem;
+}
 .cabecera{
  display: flex;
  flex-direction: row;
@@ -48,7 +51,10 @@ display: inline flex
   height: fit-content;
    color:var(--textovergrey);
     overflow: hidden;
+    
+    
 }
+
 .div-flex{
   display: flex;
  flex-direction: row;
@@ -57,17 +63,34 @@ display: inline flex
  align-items: center;
  max-width: 80vw;
  max-height: 80vh;
- margin:2rem;
+ margin:1rem;
+
  
  
 }
 .imagen-flex{
   margin-right: 1rem;
-  width: 100%
- 
+  width: 100%;
+} 
+.imagenes-fondo{
+max-width: 80%;
+margin: 0 auto;
+margin-top:2rem;
+ border: 7px solid;
+ border-color: var(--blue-third);
+
+}  
+.logo-click{
+  margin-top: 2rem;
+   width: 180px;
+   height:50px;
+   border-radius: 8px;
+   cursor: pointer;
 }
-.imagen-borrar{
-  width: 90%;
+
+.miniatura{
+  width: 100%;
+  border-style: double;
 }
 .mensaje-gris-oscuro{
   background-color: var(--dark-usage);
@@ -86,3 +109,69 @@ display: inline flex
   height: auto;
   display: inline-block;
 }
+.nasa-logo{
+  width:8%;
+  height: auto;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+#div-video{
+  display:none
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.oculto{
+  display:none
+}
+.button-in-collapse{
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+::-webkit-scrollbar {
+  background: #000000;
+  height: 15px;
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background:var(--blue-third);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-second);
+}
+
+h6{
+  color:var(--textovergrey)
+}
+h3{
+  color:#77d5ec;
+}
+
+@media (max-width: 768px) {  
+  .aside{
+    display:none;
+  }
+  .contenido{
+    width: 100%;
+  }
+}  

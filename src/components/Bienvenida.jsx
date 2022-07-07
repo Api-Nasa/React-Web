@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import '../styles/App.css';
 import asteroid from '../assets/gifs/asteroid.gif';
