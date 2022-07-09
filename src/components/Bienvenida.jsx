@@ -6,7 +6,7 @@ import atom from '../assets/gifs/atom.gif';
 
 export default function Bienvenida() {
   return (
-    <div className="App animate__animated animate__zoomIn">
+    <div className="App animate__animated animate__fadeIn">
       <header className="App-header">
         <Link to="/Main">
           <button type="button" className="btn btn-primary api-btn ">

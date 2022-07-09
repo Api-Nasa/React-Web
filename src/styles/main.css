@@ -30,14 +30,13 @@ display: inline flex
 .boton-fecha{
   margin-left:2rem;
 }
+
 .cabecera{
  display: flex;
  flex-direction: row;
  justify-content: flex-start;
  justify-items: center;
  align-items: center;
- 
-
   
 }
 .aside{
@@ -51,10 +50,15 @@ display: inline flex
   height: fit-content;
    color:var(--textovergrey);
     overflow: hidden;
-    
-    
+   
 }
-
+.myiframe{
+  animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 12s; /* don't forget to set a duration! */
+}
+.white{
+  color:white;
+}
 .div-flex{
   display: flex;
  flex-direction: row;
@@ -68,9 +72,12 @@ display: inline flex
  
  
 }
+
 .imagen-flex{
   margin-right: 1rem;
   width: 100%;
+  
+ 
 } 
 .imagenes-fondo{
 max-width: 80%;
@@ -140,7 +147,15 @@ margin-top:2rem;
   margin-bottom: 1rem;
   margin-left: 1rem;
 }
-
+.fit-button{
+  width: fit-content;
+  display:inline-block;
+  margin:1rem
+  
+}
+.button-apply{
+  margin-left:1rem;
+}
 ::-webkit-scrollbar {
   background: #000000;
   height: 15px;
@@ -167,6 +182,7 @@ h3{
   color:#77d5ec;
 }
 
+
 @media (max-width: 768px) {  
   .aside{
     display:none;
@@ -174,4 +190,7 @@ h3{
   .contenido{
     width: 100%;
   }
+  .button-apply{
+  margin:2rem;
+}
 }  

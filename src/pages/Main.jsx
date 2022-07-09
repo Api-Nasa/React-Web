@@ -8,268 +8,513 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import '../styles/App.css';
 import '../styles/main.css';
 import atom from '../assets/gifs/atom.gif';
-import astronauta from '../assets/images/astronauta.jpg';
 /* import Cabecerainicio from '../components/Cabecerainicio'; */
 
-
-
-const apikey = "kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t"
+const apikey = 'kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t';
 /* const heading = document.querySelector('#head'); */
 /* heading.textContent = 'Astronomy Picture of the Day'; */
 const dateBox = document.querySelector('#date');
 /* const title = document.querySelector('.title'); */
 /* const image = document.querySelector('img');
 const contentBox = document.querySelector('.explain'); */
-let fechaapi=""
-let visited=[]
-let dict={}
+let fechaapi = '';
+let visited = [];
+let aleatorio=0
+let dict = {};
+let imagelist = [
+  '2022-02-12',
+  '2022-05-04',
+  '2021-11-18',
+  '2020-10-27',
+  '2015-06-06',
+  '2015-09-28',
+  '2015-03-19',
+  '2022-06-16',
+  '2022-05-18',
+  '2015-07-26',
+  '2015-09-13',
+  '2015-03-21',
+  '2015-08-22',
+  '2015-10-25',
+  '2015-12-31',
+  '2021-12-13',
+  '2022-02-04',
+  '2021-10-21',
+  '2021-02-22',
+  '2021-01-19',
+  '2020-12-20',
+  '2020-11-16',
+  '2020-08-24',
+  '2020-07-27',
+  '2020-02-28',
+  '2020-02-11',
+  '2020-06-05',
+  '2019-12-25',
+  '2019-12-19',
+  '2019-11-28',
+  '2019-11-09',
+  '2019-10-29',
+  '2019-09-28',
+  '2019-07-22',
+  '2019-03-22',
+  '2019-06-30',
+  '2019-01-11',
+  '2018-10-13',
+  '2018-03-01',
+  '2018-01-27',
+  '2017-07-24',
+  '2017-07-22',
+  '2017-05-10',
+  '2016-06-16',
+  '2016-05-18',
+  '2016-05-07',
+  '2016-03-05',
+  '2016-02-24',
+  '2016-02-18',
+  '2015-07-12',
+  '2022-07-04',
+  '2022-07-08',
+  '2022-07-02',
+  '2022-07-01',
+  '2022-06-29',
+  '2022-06-27',
+  '2022-06-25',
+  '2022-05-12',
+  '2022-05-05',
+  '2022-04-27',
+  '2022-04-26',
+  '2022-04-25',
+  '2022-04-24',
+  '2022-04-21',
+  '2022-04-19',
+  '2022-04-18',
+  '2022-04-17',
+  '2022-04-12',
+  '2022-04-07',
+  '2022-04-05',
+  '2022-04-04',
+  '2022-04-01',
+  '2022-03-29',
+  '2022-03-28',
+  '2022-03-23',
+  '2022-03-22',
+  '2022-03-21',
+  '2022-03-16',
+  '2022-03-15',
+  '2022-03-13',
+  '2022-03-12',
+  '2022-03-11',
+  '2022-03-10',
+  '2022-03-08',
+  '2022-03-07',
+  '2022-03-06',
+  '2022-03-04',
+  '2022-02-28',
+  '2022-02-23',
+  '2022-02-22',
+  '2022-02-11',
+  '2022-02-08',
+  '2022-02-07',
+  '2022-01-31',
+  '2022-01-27',
+  '2022-01-26',
+  '2022-01-23',
+  '2022-01-21',
+  '2022-01-18',
+  '2022-01-16',
+  '2022-01-12',
+  '2022-01-11',
+  '2022-01-09',
+  '2022-01-07',
+  '2022-01-06',
+  '2022-01-04',
+  '2022-01-02',
+  '2021-12-31',
+  '2021-12-30',
+  '2021-12-29',
+  '2021-01-25',
+  '2021-12-23',
+  '2021-12-22',
+  '2021-12-21',
+  '2021-12-19',
+  '2021-12-13',
+  '2021-12-12',
+  '2021-12-11',
+  '2021-12-10',
+  '2021-12-09',
+  '2021-12-06',
+  '2021-12-04',
+  '2021-11-22',
+  '2021-11-25',
+  '2021-11-23',
+  '2021-11-22',
+  '2021-11-15',
+  '2021-11-14',
+  '2021-10-31',
+  '2021-10-30',
+  '2021-10-21',
+  '2021-10-14',
+  '2021-10-07',
+  '2021-10-02',
+  '2021-09-30',
+  '2021-09-23',
+  '2021-09-21',
+  '2021-09-16',
+  '2021-09-15',
+  '2021-09-14',
+  '2021-09-12',
+  '2021-09-08',
+  '2021-09-06',
+  '2021-08-31',
+  '2021-08-26',
+  '2021-08-22',
+  '2021-08-18',
+  '2021-08-12',
+  '2021-08-01',
+  '2020-01-11',
+  '2020-01-10',
+  '2020-01-06',
+  '2020-01-02',
+  '2020-01-01',
+  '2019-12-29',
+  '2019-12-28',
+  '2019-12-26',
+  '2019-12-25',
+  '2019-12-17',
+  '2019-12-16',
+  '2019-12-17',
+  '2019-12-07',
+  '2019-12-04',
+  '2019-08-19',
+];
+let videolist = [
+  '2021-01-11',
+  '2015-10-28',
+  '2015-12-25',
+  '2018-06-12',
+  '2021-10-26',
+  '2020-06-15',
+  '2020-02-23',
+  '2020-04-04',
+  '2020-03-03',
+  '2019-10-21',
+  '2018-04-29',
+  '2018-03-12',
+  '2016-06-28',
+  '2022-05-09',
+  '2022-03-30',
+  '2022-02-09',
+  '2022-02-01',
+  '2022-01-10',
+  '2021-12-28',
+  '2021-11-30',
+  '2021-10-26',
+  '2021-10-11',
+  '2021-10-10',
+  '2021-09-28',
+  '2021-09-22',
+  '2021-09-05',
+  '2021-08-25',
+];
 const Estadoinicial = {
   title: '',
   fecha: '',
   contentBox: '',
   imagesrc: '',
-  hdimagesrc:'',
-  videosrc:'',
+  hdimagesrc: '',
+  videosrc: '',
   datebox: '',
-  history:'',
-  Data:'',
+  history: '',
+  Data: '',
 };
-
-
 
 // APOD = Astronomy Picture of the Day
 const APOD = async () => {
-   
-  
   const API =
-    'https://api.nasa.gov/planetary/apod?api_key=' + apikey + '&date='+fechaapi+'&hd=true';
-   
-    try {
-      const fetchData = await fetch(API);
-      Estadoinicial.Data = await fetchData.json()
-      Estadoinicial.title = Estadoinicial.Data.title
-      Estadoinicial.imagesrc = Estadoinicial.Data.url
-      Estadoinicial.hdimagesrc = Estadoinicial.Data.hdurl;
-      Estadoinicial.explanation = Estadoinicial.Data.explanation
-      
-      const photo = document.getElementById('fotodeldia');
-      /*  const miniatura = document.getElementById('miniatura'); */
-      const video = document.getElementById('div-video');
-      const titulo=document.querySelector('#head')
-      
-      
-      
-      titulo.innerHTML = Estadoinicial.title;
-      photo.src = Estadoinicial.imagesrc; 
-       const explanation = document.getElementById('explanation');
-       explanation.innerHTML = Estadoinicial.Data.explanation;
-     /*  miniatura.src = Estadoinicial.imagesrc;  */
-      
-      if (Estadoinicial.Data.media_type === 'video') {
-        /* cargar contenido seguro en su sitio, simplemente elimine el protocolo del enlace */
-        const urlreducida = Estadoinicial.imagesrc.replace('https:', '');
-        video.style.display = 'block';
-        photo.style.display = 'none';
-        /*  miniatura.style.display ="none" */
-        document.getElementById('video').src = urlreducida;
-      }
-      else{
-        if (Estadoinicial.Data.media_type === 'image') {
-      photo.style.display ="block"
-      video.style.display ="none"
-      const videoplay = document.getElementById('video');
-      videoplay.src = ""
-      if (! visited.includes(Estadoinicial.imagesrc)){
-        visited.unshift(Estadoinicial.imagesrc);
-        localStorage.setItem('historialvisitas', JSON.stringify(visited));
-        dict[Estadoinicial.imagesrc]=fechaapi;
-       localStorage.setItem('diccionario', JSON.stringify(dict));
-       
-       console.log(visited)
-      }    
-      
-        }
-        else {
-           video.style.display ="none"
-           video.src=""
-           photo.style.display ="block"
-         /*   miniatura.style.display ="block" */
-           photo.src =astronauta
-         /*   miniatura.src=astronauta */
-           titulo.innerHTML = "Recurso no encontrado ";
-           
-        }
-      }
-      console.log(Estadoinicial.Data);
-      if (visited.length >1){
-      const history = document.getElementById('history');
-       history.style.display ="block"
-      } else {
-        const history = document.getElementById('history');
-       history.style.display ="none"
-      }
-      
+    'https://api.nasa.gov/planetary/apod?api_key=' +
+    apikey +
+    '&date=' +
+    fechaapi +
+    '&hd=true';
 
-        
-        
-        
-    } catch (error) {
-      console.log(error);
-      const photo = document.getElementById('fotodeldia');
-      const miniatura = document.getElementById('miniatura');
-      const video = document.getElementById('video');
-      const titulo = document.querySelector('#head');
-     /*  video.style.display ="none" */
-     /*  video.src="" */
-      /* photo.style.display ="block"
+  try {
+    const fetchData = await fetch(API);
+    Estadoinicial.Data = await fetchData.json();
+    Estadoinicial.title = Estadoinicial.Data.title;
+    Estadoinicial.imagesrc = Estadoinicial.Data.url;
+    Estadoinicial.hdimagesrc = Estadoinicial.Data.hdurl;
+    Estadoinicial.explanation = Estadoinicial.Data.explanation;
+
+    const photo = document.getElementById('fotodeldia');
+    /*  const miniatura = document.getElementById('miniatura'); */
+    const video = document.getElementById('div-video');
+    const titulo = document.querySelector('#head');
+
+    titulo.innerHTML = Estadoinicial.title;
+    photo.src = Estadoinicial.imagesrc;
+    const explanation = document.getElementById('explanation');
+    explanation.innerHTML = Estadoinicial.Data.explanation;
+    /*  miniatura.src = Estadoinicial.imagesrc;  */
+     const deleteimage = document.getElementById('deleteimage');
+     deleteimage.style.display="inline-block"
+     const hd = document.getElementById('hd');
+     hd.style.display="inline-block"
+    const nextrandom = document.getElementById('nextrandom');
+    nextrandom.style.display="inline-block"
+
+
+    if (Estadoinicial.Data.media_type === 'video') {
+      /* cargar contenido seguro en su sitio, simplemente elimine el protocolo del enlace */
+      const urlreducida = Estadoinicial.imagesrc.replace('https:', '');
+      deleteimage.style.display="none"
+      hd.style.display="none"
+      video.style.display = 'block';
+      photo.style.display = 'none';
+      /*  miniatura.style.display ="none" */
+      document.getElementById('video').src = urlreducida;
+    } else {
+      if (Estadoinicial.Data.media_type === 'image') {
+        photo.style.display = 'block';
+        video.style.display = 'none';
+        deleteimage.style.display="inline-block"
+        const videoplay = document.getElementById('video');
+        videoplay.src = '';
+        if (!visited.includes(Estadoinicial.imagesrc)) {
+          visited.unshift(Estadoinicial.imagesrc);
+          localStorage.setItem('historialvisitas', JSON.stringify(visited));
+          dict[Estadoinicial.imagesrc] = fechaapi;
+          localStorage.setItem('diccionario', JSON.stringify(dict));
+
+          console.log(visited);
+        }
+      } else {
+        video.style.display = 'none';
+        video.src = '';
+        photo.style.display = 'block';
+        /*   miniatura.style.display ="block" */
+        photo.src = "https://res.cloudinary.com/dquxfl0fe/image/upload/v1657344274/API-GA/astronauta_ulcwcc.jpg";
+        /*   miniatura.src=astronauta */
+        titulo.innerHTML = 'Recurso no encontrado ';
+        const explanation = document.getElementById('explanation');
+        explanation.innerHTML =
+          'No se ha encontrado nada. Recuerde que tenemos una selección de nuestros recursos favoritos en el menú principal';
+      }
+    }
+    console.log(Estadoinicial.Data);
+    if (visited.length > 1) {
+      const history = document.getElementById('history');
+      history.style.display = 'block';
+    } else {
+      const history = document.getElementById('history');
+      history.style.display = 'none';
+    }
+  } catch (error) {
+    console.log(error);
+    const photo = document.getElementById('fotodeldia');
+    const miniatura = document.getElementById('miniatura');
+    const video = document.getElementById('video');
+    const titulo = document.querySelector('#head');
+    /*  video.style.display ="none" */
+    /*  video.src="" */
+    /* photo.style.display ="block"
       miniatura.style.display ="block"
       photo.src =astronauta
       miniatura.src=astronauta */
-      /* titulo.innerHTML = "Recurso no encontrado "; */
-        /* title.innerHTML = "No Internet"; */
-
-    };
+    /* titulo.innerHTML = "Recurso no encontrado "; */
+    /* title.innerHTML = "No Internet"; */
+  }
 };
 
-
-
-
-
 function reducer(state = Estadoinicial, action) {
-  
-switch (action.type) {
-  case 'TODAYPHOTO': {
-    fechaapi = new Date().toJSON().slice(0, 10);
-    fechaapi = fechaapi.toString();
-    APOD();
+  switch (action.type) {
+    case 'TODAYPHOTO': {
+      fechaapi = new Date().toJSON().slice(0, 10);
+      fechaapi = fechaapi.toString();
+      APOD();
+      return {
+        ...state,
+      };
+    }
+    case 'LOADPHOTO': {
+      state.fecha = action.payload.id;
+      fechaapi = state.fecha;
+      fechaapi = fechaapi.toString();
 
-    return {
-      ...state,
-    };
-  }
-  case 'LOADPHOTO': {
-    
-    state.fecha = action.payload.id;
-    fechaapi = state.fecha;
-    fechaapi = fechaapi.toString();
-    APOD();
-    document.querySelector('#mensaje').click();
+      return {
+        ...state,
+      };
+    }
+    case 'CLICKMINIATURA': {
+      const photo = document.getElementById('fotodeldia');
+      const hd = document.getElementById('hd');
+      hd.style.display="none"
+      const nextrandom = document.getElementById('nextrandom');
+      nextrandom.style.display="none"
+      const deleteimage = document.getElementById('deleteimage');
+      deleteimage.style.display="none"
+      photo.src = action.payload.link;
+      photo.imageSrc = action.payload.link;
+      fechaapi = dict[action.payload.link];
 
-    return {
-      ...state,
-    };
-  }
-  case 'CLICKMINIATURA': {
-    const photo = document.getElementById('fotodeldia');
-    photo.src = action.payload.link;
-    photo.imageSrc = action.payload.link;
-    fechaapi = dict[action.payload.link];
-    APOD();
-    const explanation = document.getElementById('explanation');
-    explanation.innerHTML = Estadoinicial.explanation;
+      APOD();
+      const explanation = document.getElementById('explanation');
+      explanation.innerHTML = Estadoinicial.explanation;
 
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
 
-    return {
-      ...state,
-    };
-  }
-  case 'LIMPIARSTORAGE': {
-    localStorage.removeItem('historialvisitas');
-    document.querySelector('#history').click();
-    visited = [];
+      return {
+        ...state,
+      };
+    }
+    case 'LIMPIARSTORAGE': {
+      localStorage.removeItem('historialvisitas');
+      document.querySelector('#history').click();
+      visited = [];
 
-    APOD();
-    /*  const history = document.getElementById('#history');
+      APOD();
+      /*  const history = document.getElementById('#history');
     history.style.display = "none"  */
 
-    return {
-      ...state,
-    };
-  }
-  case 'CLOSEEXPLANATION': {
-    document.querySelector('#explanationbutton').click();
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+      return {
+        ...state,
+      };
+    }
+    case 'NOTREMOVE': {
+       document.querySelector('#history').click();
+      return {
+        ...state,
+      };
+    }
+    case 'CLOSEEXPLANATION': {
+      document.querySelector('#explanationbutton').click();
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
 
-    return {
-      ...state,
-    };
-  }
-  case 'HIGHTDEFINITION': {
-    const photo = document.getElementById('fotodeldia');
-    photo.src=Estadoinicial.hdimagesrc
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+      return {
+        ...state,
+      };
+    }
+    case 'HIGHTDEFINITION': {
+      const photo = document.getElementById('fotodeldia');
+      photo.src = Estadoinicial.hdimagesrc;
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
 
-    return {
-      ...state,
-    };
-  }
-  case 'NASALINK': {
-     window.open('https://www.nasa.gov/nasalive', '_blank');
+      return {
+        ...state,
+      };
+    }
+    case 'APPLYDATE': {
+      document.querySelector('#mensaje').click();
+      APOD();
+      return {
+        ...state,
+      };
+    }
+    case 'FAVORITOS': {
+      document.querySelector('#favoritos').click();
+      aleatorio = Math.floor(Math.random() * imagelist.length);
+      fechaapi = imagelist[aleatorio];
+      APOD();
+      return {
+        ...state,
+      };
+    }
+    case 'VIDEOFAVORITOS': {
+      document.querySelector('#favoritos').click();
+      aleatorio = Math.floor(Math.random() * videolist.length);
+      fechaapi = videolist[aleatorio];
+      APOD();
+      return {
+        ...state,
+      };
+    }
+    case 'MENURANDOM': {
+      document.querySelector('#favoritos').click();
+      return {
+        ...state,
+      };
+    }
 
-    return {
-      ...state,
-    };
-  }
-  case 'ADECCOLINK': {
-     window.open('https://fundacionadecco.org/', '_blank');
+    case 'DELETEIMAGE': {
+      delete dict[Estadoinicial.imagesrc];
+      visited = visited.filter(item => item !== Estadoinicial.imagesrc);
+      localStorage.setItem('historialvisitas', JSON.stringify(visited));
+      const photo = document.getElementById('fotodeldia');
+      photo.src =
+        'https://res.cloudinary.com/dquxfl0fe/image/upload/v1657313814/API-GA/localstorage_xawsp4.png';
+      Estadoinicial.hdimagesrc = photo.src;
+      const explanation = document.getElementById('explanation');
+      explanation.innerHTML =
+        'The image has been removed. Remember that we have a selection of our favorite resources on the main menu';
+      const head = document.getElementById('head');
+      head.innerHTML = 'Image has been successfully removed';
+      return {
+        ...state,
+      };
+    }
+    
+    case 'NASALINK': {
+      window.open('https://www.nasa.gov/nasalive', '_blank');
 
-    return {
-      ...state,
-    };
-  }
-  case 'GALINK': {
-     window.open('https://generalassemb.ly/', '_blank');
+      return {
+        ...state,
+      };
+    }
+    case 'ADECCOLINK': {
+      window.open('https://fundacionadecco.org/', '_blank');
 
-    return {
-      ...state,
-    };
+      return {
+        ...state,
+      };
+    }
+    case 'GALINK': {
+      window.open('https://generalassemb.ly/', '_blank');
+
+      return {
+        ...state,
+      };
+    }
+    default: {
+      return { ...state };
+    }
   }
-  default: {
-    return { ...state };
-  }
-} 
 }
-comenzar()
-  
-  function comenzar(){
-   fechaapi = new Date().toJSON().slice(0,10)
-   fechaapi = fechaapi.toString()
-  
-     visited =JSON.parse(localStorage.getItem('historialvisitas'));
-     dict=JSON.parse(localStorage.getItem('diccionario'));
-   if (visited === null){
-    visited=[]
-     dict = {}
-   
-   }
-  
-   APOD();
-  
+comenzar();
+
+function comenzar() {
+  fechaapi = new Date().toJSON().slice(0, 10);
+  fechaapi = fechaapi.toString();
+
+  visited = JSON.parse(localStorage.getItem('historialvisitas'));
+  dict = JSON.parse(localStorage.getItem('diccionario'));
+  if (visited === null) {
+    visited = [];
+    dict = {};
   }
-   
-  function handleClick(e) {
-    e.preventDefault();
-    console.log('The link was clicked.');
-  }  
+
+  APOD();
+}
+
+function handleClick(e) {
+  e.preventDefault();
+  console.log('The link was clicked.');
+}
 
 export default function Main() {
-
   const [state, dispatch] = useReducer(reducer, Estadoinicial);
   return (
-    <div class="container-fluid todo animate__animated animate__zoomIn">
+    <div class="container-fluid todo animate__animated animate__fadeIn">
       <div class="row">
         {/* zona para titulos y botones -----------------------------------------------------------*/}
         <div className="col-12 col-titulo ">
@@ -282,7 +527,7 @@ export default function Main() {
               <button
                 id="cambiar"
                 type="button"
-                className="btn btn-outline-info btn-sm boton-cabecera"
+                className="btn btn-outline-info btn-sm boton-cabecera animate__animated animate__zoomIn"
                 onClick={event =>
                   dispatch({
                     type: 'TODAYPHOTO',
@@ -294,7 +539,7 @@ export default function Main() {
               </button>
 
               <button
-                className="btn btn-outline-info btn-sm boton-cabecera"
+                className="btn btn-outline-info btn-sm boton-cabecera animate__animated animate__zoomIn"
                 type="button"
                 id="mensaje"
                 data-bs-toggle="collapse"
@@ -304,6 +549,17 @@ export default function Main() {
               >
                 Choose Resorce By Day
               </button>
+              <button
+                id="favoritos"
+                type="button"
+                className="btn btn-outline-info btn-sm boton-cabecera animate__animated animate__zoomIn"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsefavoritos"
+                aria-expanded="false"
+                aria-controls="collapsefavoritos"
+              >
+                Our fovourites Resorces{' '}
+              </button>
             </div>
           </div>
         </div>
@@ -312,7 +568,7 @@ export default function Main() {
         <div class="col-2  aside ">
           <div class="div-flex">
             <button
-              className="btn btn-outline-secondary oculto history"
+              className="btn btn-outline-secondary history "
               type="button"
               id="history"
               data-bs-toggle="collapse"
@@ -329,7 +585,7 @@ export default function Main() {
             {visited.map((url, index) => (
               <img
                 key={index}
-                className="miniatura"
+                className="miniatura "
                 src={url}
                 alt="miniatura foto Nasa"
                 onClick={event =>
@@ -344,12 +600,10 @@ export default function Main() {
         </div>
 
         {/* zona para contenido ------------------------------------------------------------------- */}
+
         <div id="contenido" class="col-10 contenido ">
           <div class="collapse marginbotton1rem" id="collapseCalendar">
-            <div
-              id="colapsecalendar"
-              class="card card-body mensaje-gris-oscuro"
-            >
+            <div class="card card-body mensaje-gris-oscuro animate__animated animate__fadeIn">
               <div
                 style={{
                   margin: 'auto',
@@ -378,27 +632,102 @@ export default function Main() {
                 />
                 <button
                   type="button"
-                  class="btn btn-secondary btn-lg boton-fecha"
+                  class="btn btn-secondary btn-lg boton-fecha button-apply"
+                  onClick={e =>
+                    dispatch({
+                      type: 'APPLYDATE',
+                      payload: { id: e.target.value },
+                    })
+                  }
                 >
-                  Aply Date
+                  Apply Date / Close
                 </button>
               </div>
             </div>
           </div>
           <div class="collapse marginbotton1rem" id="collapseHistory">
-            <div id="colapsehistory" class="card card-body mensaje-gris-oscuro">
-              <button
-                type="button"
-                class="btn btn-secondary btn-sm"
-                onClick={e =>
-                  dispatch({
-                    type: 'LIMPIARSTORAGE',
-                    payload: { id: e.target.value },
-                  })
-                }
-              >
-                click to remove image history
-              </button>
+            <div class="card card-body mensaje-gris-oscuro">
+              <p class="animate__animated animate__fadeIn">
+                El historial de su navegación en esta página se almacena
+                exclusivamente en el Caché de su navegador. Usted puede remover
+                ese registro en cualquier momento. Así mismo un par:
+                clave/Valor, es el encargado de mostrarle de nuevo cualquiera de
+                las imagenes que usted vaya conservando. Se ha traducido este
+                texto para empatizar con la comunidad hispanohablante 
+                que ha crecido un 70 % en los últimos 30 años. 591 millones de personas
+                 en todo el mundo hablan español, según el último anuario del Instituto
+                 Cervantes. (14 de Octubre 2021){' '}
+              </p>
+              <p class="animate__animated animate__fadeIn white">
+                Your browsing history on this site is stored exclusively in your
+                browser's storage. You can remove this record at any time. Also
+                a pair: key/value, is in charge of showing you again any of the
+                images that you keep.{' '}
+              </p>
+
+              <div className="div-flex">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm fit-button animate__animated animate__heartBeat"
+                  onClick={e =>
+                    dispatch({
+                      type: 'LIMPIARSTORAGE',
+                      payload: { id: e.target.value },
+                    })
+                  }
+                >
+                  click to remove image history
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm fit-button "
+                  onClick={e =>
+                    dispatch({
+                      type: 'NOTREMOVE',
+                      payload: { id: e.target.value },
+                    })
+                  }
+                >
+                  Don't remove yet
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="collapse marginbotton1rem" id="collapsefavoritos">
+            <div
+              id="colapsefavoritos"
+              class="card card-body mensaje-gris-oscuro"
+            >
+              <p className="animate__animated animate__fadeIn">
+                Claudia y yo hemos seleccionado las imagenes y videos que más
+                nos han gustado. Esperamos que sean de su agrado.{' '}
+              </p>
+              <div className="div-flex">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm fit-button"
+                  onClick={e =>
+                    dispatch({
+                      type: 'FAVORITOS',
+                      payload: { id: e.target.value },
+                    })
+                  }
+                >
+                  click to view the best image (Random)
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm fit-button"
+                  onClick={e =>
+                    dispatch({
+                      type: 'VIDEOFAVORITOS',
+                      payload: { id: e.target.value },
+                    })
+                  }
+                >
+                  click to view the best Video (Random)
+                </button>
+              </div>
             </div>
           </div>
           <div class="collapse marginbotton1rem" id="collapseExplanation">
@@ -407,9 +736,10 @@ export default function Main() {
               class="card card-body mensaje-gris-oscuro"
             >
               <p id="explanation">{state.explanation}</p>
+              <p id="dateresourse">Resourse Date: {fechaapi}</p>
               <button
                 type="button"
-                class="btn btn-secondary btn-sm"
+                class="btn btn-secondary btn-sm fit-button"
                 onClick={e =>
                   dispatch({
                     type: 'CLOSEEXPLANATION',
@@ -430,7 +760,7 @@ export default function Main() {
             {state.Data.title}
           </h1>
           <button
-            className="btn btn-outline-secondary button-in-collapse"
+            className="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
             type="button"
             id="explanationbutton"
             data-bs-toggle="collapse"
@@ -444,7 +774,7 @@ export default function Main() {
           <button
             type="button"
             id="hd"
-            class="btn btn-outline-secondary button-in-collapse"
+            class="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
             onClick={e =>
               dispatch({
                 type: 'HIGHTDEFINITION',
@@ -452,9 +782,36 @@ export default function Main() {
               })
             }
           >
-            View Resource in Hight definition
+            View Resource in HD
+          </button>
+          <button
+            type="button"
+            id="deleteimage"
+            class="btn btn-outline-danger button-in-collapse animate__animated animate__slideInRight"
+            onClick={e =>
+              dispatch({
+                type: 'DELETEIMAGE',
+                payload: { id: e.target.value },
+              })
+            }
+          >
+            Delete this image from history
+          </button>
+          <button
+            type="button"
+            id="nextrandom"
+            class="btn btn-outline-info button-in-collapse animate__animated animate__slideInRight "
+            onClick={e =>
+              dispatch({
+                type: 'MENURANDOM',
+                payload: { id: e.target.value },
+              })
+            }
+          >
+            Random Menu
           </button>
           <TransformWrapper
+            Scale={1}
             defaultScale={1}
             defaultPositionX={1}
             defaultPositionY={1}
@@ -462,7 +819,7 @@ export default function Main() {
             <TransformComponent>
               <img
                 id="fotodeldia"
-                className="imagen-flex "
+                className="imagen-flex  "
                 src={state.imagesrc}
                 alt="foto del día"
               />
