@@ -13,7 +13,7 @@ export default function Bienvenida() {
             Get started for discover
           </button>
         </Link>
-        <img src={asteroid} className="App-logo  " alt="gif asteroid" />
+        <img src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657439542/API-GA/cool-bueno_h6o002.gif"  alt="gif asteroid" />
         <div className="titulo animate__animated animate__zoomIn ">
           <img src={atom} className="App-logo logo-peq " alt="gif atom" />
           <p className="titulo-landing ">

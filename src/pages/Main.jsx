@@ -217,10 +217,10 @@ let videolist = [
   '2021-08-25',
 ];
 const Estadoinicial = {
-  title: '',
+  title: 'dasdasdasd',
   fecha: '',
   contentBox: '',
-  imagesrc: '',
+  imagesrc:   'https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1',
   hdimagesrc: '',
   videosrc: '',
   datebox: '',
@@ -245,10 +245,13 @@ const APOD = async () => {
     Estadoinicial.hdimagesrc = Estadoinicial.Data.hdurl;
     Estadoinicial.explanation = Estadoinicial.Data.explanation;
 
+    const botoneselemento = document.getElementById('botones-elemento');
+    botoneselemento.style.display="inline-block"
     const photo = document.getElementById('fotodeldia');
-    /*  const miniatura = document.getElementById('miniatura'); */
     const video = document.getElementById('div-video');
     const titulo = document.querySelector('#head');
+    const history = document.getElementById('history');
+    history.style.display = 'block';
 
     titulo.innerHTML = Estadoinicial.title;
     photo.src = Estadoinicial.imagesrc;
@@ -265,11 +268,15 @@ const APOD = async () => {
 
     if (Estadoinicial.Data.media_type === 'video') {
       /* cargar contenido seguro en su sitio, simplemente elimine el protocolo del enlace */
-      const urlreducida = Estadoinicial.imagesrc.replace('https:', '');
+      let urlreducida = Estadoinicial.imagesrc.replace('https:', '');
+      /* prepara lo videos para reproducción automática */
+      urlreducida = urlreducida + '?rel=0&amp;autoplay=1';
       deleteimage.style.display="none"
       hd.style.display="none"
       video.style.display = 'block';
       photo.style.display = 'none';
+      const botoneselemento = document.getElementById('botones-elemento');
+      botoneselemento.style.display="none"
       /*  miniatura.style.display ="none" */
       document.getElementById('video').src = urlreducida;
     } else {
@@ -297,11 +304,11 @@ const APOD = async () => {
         titulo.innerHTML = 'Recurso no encontrado ';
         const explanation = document.getElementById('explanation');
         explanation.innerHTML =
-          'No se ha encontrado nada. Recuerde que tenemos una selección de nuestros recursos favoritos en el menú principal';
+          'Nothing has been found. Remember that we have a selection of our favorite resources on the main menu.';
       }
     }
     console.log(Estadoinicial.Data);
-    if (visited.length > 1) {
+    if (visited.length > 0) {
       const history = document.getElementById('history');
       history.style.display = 'block';
     } else {
@@ -330,6 +337,10 @@ function reducer(state = Estadoinicial, action) {
     case 'TODAYPHOTO': {
       fechaapi = new Date().toJSON().slice(0, 10);
       fechaapi = fechaapi.toString();
+      const nextrandom = document.getElementById('nextrandom');
+      nextrandom.style.display = 'none';
+      const deleteimage = document.getElementById('deleteimage');
+      deleteimage.style.display = 'none';
       APOD();
       return {
         ...state,
@@ -416,6 +427,12 @@ function reducer(state = Estadoinicial, action) {
     }
     case 'APPLYDATE': {
       document.querySelector('#mensaje').click();
+       const videoplay = document.getElementById('video');
+       videoplay.src = '';
+       const nextrandom = document.getElementById('nextrandom');
+       nextrandom.style.display = 'none';
+       const deleteimage = document.getElementById('deleteimage');
+       deleteimage.style.display = 'none';
       APOD();
       return {
         ...state,
@@ -425,6 +442,10 @@ function reducer(state = Estadoinicial, action) {
       document.querySelector('#favoritos').click();
       aleatorio = Math.floor(Math.random() * imagelist.length);
       fechaapi = imagelist[aleatorio];
+      const nextrandom = document.getElementById('nextrandom');
+      nextrandom.style.display = 'none';
+      const deleteimage = document.getElementById('deleteimage');
+      deleteimage.style.display = 'none';
       APOD();
       return {
         ...state,
@@ -435,6 +456,7 @@ function reducer(state = Estadoinicial, action) {
       aleatorio = Math.floor(Math.random() * videolist.length);
       fechaapi = videolist[aleatorio];
       APOD();
+      
       return {
         ...state,
       };
@@ -451,9 +473,13 @@ function reducer(state = Estadoinicial, action) {
       visited = visited.filter(item => item !== Estadoinicial.imagesrc);
       localStorage.setItem('historialvisitas', JSON.stringify(visited));
       const photo = document.getElementById('fotodeldia');
-      photo.src =
-        'https://res.cloudinary.com/dquxfl0fe/image/upload/v1657313814/API-GA/localstorage_xawsp4.png';
-      Estadoinicial.hdimagesrc = photo.src;
+      photo.style.display = "none"
+      const video = document.getElementById('video');
+      const divvideo = document.getElementById('div-video');
+      divvideo.style.display = "block"
+      video.src="https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1"
+      const botoneselemento = document.getElementById('botones-elemento');
+      botoneselemento.style.display="none"
       const explanation = document.getElementById('explanation');
       explanation.innerHTML =
         'The image has been removed. Remember that we have a selection of our favorite resources on the main menu';
@@ -502,8 +528,12 @@ function comenzar() {
     visited = [];
     dict = {};
   }
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
 
-  APOD();
 }
 
 function handleClick(e) {
@@ -611,7 +641,7 @@ export default function Main() {
                   width: '50vw',
                 }}
               >
-                <h4>Cada día una foto, un video, o un juego</h4>
+                <h4>Every day a photo, a video, or a game</h4>
                 <TextField
                   style={{ width: '30vw' }}
                   id="date"
@@ -653,10 +683,10 @@ export default function Main() {
                 ese registro en cualquier momento. Así mismo un par:
                 clave/Valor, es el encargado de mostrarle de nuevo cualquiera de
                 las imagenes que usted vaya conservando. Se ha traducido este
-                texto para empatizar con la comunidad hispanohablante 
-                que ha crecido un 70 % en los últimos 30 años. 591 millones de personas
-                 en todo el mundo hablan español, según el último anuario del Instituto
-                 Cervantes. (14 de Octubre 2021){' '}
+                texto para empatizar con la comunidad hispanohablante que ha
+                crecido un 70 % en los últimos 30 años. 591 millones de personas
+                en todo el mundo hablan español, según el último anuario del
+                Instituto Cervantes. (14 de Octubre 2021){' '}
               </p>
               <p class="animate__animated animate__fadeIn white">
                 Your browsing history on this site is stored exclusively in your
@@ -699,8 +729,8 @@ export default function Main() {
               class="card card-body mensaje-gris-oscuro"
             >
               <p className="animate__animated animate__fadeIn">
-                Claudia y yo hemos seleccionado las imagenes y videos que más
-                nos han gustado. Esperamos que sean de su agrado.{' '}
+                We have selected the images and videos that we we liked the
+                most. We hope you like them.{' '}
               </p>
               <div className="div-flex">
                 <button
@@ -726,6 +756,20 @@ export default function Main() {
                   }
                 >
                   click to view the best Video (Random)
+                </button>
+                <button
+                  type="button"
+                  class="close btn btn-outline-secondary btn-sm fit-button"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                   onClick={e =>
+                    dispatch({
+                      type: 'MENURANDOM',
+                      payload: { id: e.target.value },
+                    })
+                  }
+                >
+                   Close this Window
                 </button>
               </div>
             </div>
@@ -759,57 +803,59 @@ export default function Main() {
           >
             {state.Data.title}
           </h1>
-          <button
-            className="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
-            type="button"
-            id="explanationbutton"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseExplanation"
-            data-toggle="modal"
-            aria-expanded="false"
-            aria-controls="collapseExplanation"
-          >
-            View /Hide Explanation for this Resource
-          </button>
-          <button
-            type="button"
-            id="hd"
-            class="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
-            onClick={e =>
-              dispatch({
-                type: 'HIGHTDEFINITION',
-                payload: { id: e.target.value },
-              })
-            }
-          >
-            View Resource in HD
-          </button>
-          <button
-            type="button"
-            id="deleteimage"
-            class="btn btn-outline-danger button-in-collapse animate__animated animate__slideInRight"
-            onClick={e =>
-              dispatch({
-                type: 'DELETEIMAGE',
-                payload: { id: e.target.value },
-              })
-            }
-          >
-            Delete this image from history
-          </button>
-          <button
-            type="button"
-            id="nextrandom"
-            class="btn btn-outline-info button-in-collapse animate__animated animate__slideInRight "
-            onClick={e =>
-              dispatch({
-                type: 'MENURANDOM',
-                payload: { id: e.target.value },
-              })
-            }
-          >
-            Random Menu
-          </button>
+          <div id="botones-elemento" className="botones-elemento">
+            <button
+              className="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
+              type="button"
+              id="explanationbutton"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExplanation"
+              data-toggle="modal"
+              aria-expanded="false"
+              aria-controls="collapseExplanation"
+            >
+              View /Hide Explanation for this Resource
+            </button>
+            <button
+              type="button"
+              id="hd"
+              class="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
+              onClick={e =>
+                dispatch({
+                  type: 'HIGHTDEFINITION',
+                  payload: { id: e.target.value },
+                })
+              }
+            >
+              View Resource in HD
+            </button>
+            <button
+              type="button"
+              id="deleteimage"
+              class="btn btn-outline-danger button-in-collapse animate__animated animate__slideInRight"
+              onClick={e =>
+                dispatch({
+                  type: 'DELETEIMAGE',
+                  payload: { id: e.target.value },
+                })
+              }
+            >
+              Delete this image from history
+            </button>
+            <button
+              type="button"
+              id="nextrandom"
+              class="btn btn-outline-info button-in-collapse animate__animated animate__slideInRight "
+              onClick={e =>
+                dispatch({
+                  type: 'MENURANDOM',
+                  payload: { id: e.target.value },
+                })
+              }
+            >
+              Random Menu
+            </button>
+          </div>
           <TransformWrapper
             Scale={1}
             defaultScale={1}
@@ -819,7 +865,7 @@ export default function Main() {
             <TransformComponent>
               <img
                 id="fotodeldia"
-                className="imagen-flex  "
+                className="imagen-flex oculto "
                 src={state.imagesrc}
                 alt="foto del día"
               />
