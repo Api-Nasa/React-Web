@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/App.css';
-import asteroid from '../assets/gifs/asteroid.gif';
 import atom from '../assets/gifs/atom.gif';
 
 export default function Bienvenida() {

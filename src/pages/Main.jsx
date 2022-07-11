@@ -1,24 +1,27 @@
-import React from "react";
-import { useReducer } from "react";
-import TextField from "@material-ui/core/TextField";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useReducer } from 'react';
+import TextField from '@material-ui/core/TextField';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+
 
 /* import { Link } from 'react-router-dom'; */
-import "../styles/App.css";
-import "../styles/main.css";
-import atom from "../assets/gifs/atom.gif";
+import '../styles/App.css';
+import '../styles/main.css';
+import atom from '../assets/gifs/atom.gif';
+
 /* import Cabecerainicio from '../components/Cabecerainicio'; */
 
-const apikey = "kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t";
+const apikey = 'kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t';
 /* const heading = document.querySelector('#head'); */
 /* heading.textContent = 'Astronomy Picture of the Day'; */
-const dateBox = document.querySelector("#date");
+const dateBox = document.querySelector('#date');
 /* const title = document.querySelector('.title'); */
 /* const image = document.querySelector('img');
 const contentBox = document.querySelector('.explain'); */
-let fechaapi = "";
+let fechaapi = '';
 let visited = [];
-let aleatorio = 0;
+let aleatorio=0
 let dict = {};
 let imagelist = [
   "2022-02-12",
@@ -276,27 +279,27 @@ let videolist = [
   "2015-11-09",
   "2015-11-02",
 ];
+
 const Estadoinicial = {
-  title: "dasdasdasd",
-  fecha: "",
-  contentBox: "",
-  imagesrc:
-    "https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1",
-  hdimagesrc: "",
-  videosrc: "",
-  datebox: "",
-  history: "",
-  Data: "",
+  title: '',
+  fecha: '',
+  contentBox: '',
+  imagesrc:   'https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1',
+  hdimagesrc: '',
+  videosrc: '',
+  datebox: '',
+  history: '',
+  Data: '',
 };
 
 // APOD = Astronomy Picture of the Day
 const APOD = async () => {
   const API =
-    "https://api.nasa.gov/planetary/apod?api_key=" +
+    'https://api.nasa.gov/planetary/apod?api_key=' +
     apikey +
-    "&date=" +
+    '&date=' +
     fechaapi +
-    "&hd=true";
+    '&hd=true';
 
   try {
     const fetchData = await fetch(API);
@@ -306,82 +309,82 @@ const APOD = async () => {
     Estadoinicial.hdimagesrc = Estadoinicial.Data.hdurl;
     Estadoinicial.explanation = Estadoinicial.Data.explanation;
 
-    const botoneselemento = document.getElementById("botones-elemento");
-    botoneselemento.style.display = "inline-block";
-    const photo = document.getElementById("fotodeldia");
-    const video = document.getElementById("div-video");
-    const titulo = document.querySelector("#head");
-    const history = document.getElementById("history");
-    history.style.display = "block";
+    const botoneselemento = document.getElementById('botones-elemento');
+    botoneselemento.style.display="inline-block"
+    const photo = document.getElementById('fotodeldia');
+    const video = document.getElementById('div-video');
+    const titulo = document.querySelector('#head');
+    const history = document.getElementById('history');
+    history.style.display = 'block';
 
     titulo.innerHTML = Estadoinicial.title;
     photo.src = Estadoinicial.imagesrc;
-    const explanation = document.getElementById("explanation");
+    const explanation = document.getElementById('explanation');
     explanation.innerHTML = Estadoinicial.Data.explanation;
     /*  miniatura.src = Estadoinicial.imagesrc;  */
-    const deleteimage = document.getElementById("deleteimage");
-    deleteimage.style.display = "inline-block";
-    const hd = document.getElementById("hd");
-    hd.style.display = "inline-block";
-    const nextrandom = document.getElementById("nextrandom");
-    nextrandom.style.display = "inline-block";
+     const deleteimage = document.getElementById('deleteimage');
+     deleteimage.style.display="inline-block"
+     const hd = document.getElementById('hd');
+     hd.style.display="inline-block"
+    const nextrandom = document.getElementById('nextrandom');
+    nextrandom.style.display="inline-block"
 
-    if (Estadoinicial.Data.media_type === "video") {
+
+    if (Estadoinicial.Data.media_type === 'video') {
       /* cargar contenido seguro en su sitio, simplemente elimine el protocolo del enlace */
-      let urlreducida = Estadoinicial.imagesrc.replace("https:", "");
+      let urlreducida = Estadoinicial.imagesrc.replace('https:', '');
       /* prepara lo videos para reproducción automática */
-      urlreducida = urlreducida + "?rel=0&amp;autoplay=1";
-      deleteimage.style.display = "none";
-      hd.style.display = "none";
-      video.style.display = "block";
-      photo.style.display = "none";
-      const botoneselemento = document.getElementById("botones-elemento");
-      botoneselemento.style.display = "none";
+      urlreducida = urlreducida + '?rel=0&amp;autoplay=1';
+      deleteimage.style.display="none"
+      hd.style.display="none"
+      video.style.display = 'block';
+      photo.style.display = 'none';
+      const botoneselemento = document.getElementById('botones-elemento');
+      botoneselemento.style.display="none"
       /*  miniatura.style.display ="none" */
-      document.getElementById("video").src = urlreducida;
+      document.getElementById('video').src = urlreducida;
     } else {
-      if (Estadoinicial.Data.media_type === "image") {
-        photo.style.display = "block";
-        video.style.display = "none";
-        deleteimage.style.display = "inline-block";
-        const videoplay = document.getElementById("video");
-        videoplay.src = "";
+      if (Estadoinicial.Data.media_type === 'image') {
+        photo.style.display = 'block';
+        video.style.display = 'none';
+        deleteimage.style.display="inline-block"
+        const videoplay = document.getElementById('video');
+        videoplay.src = '';
         if (!visited.includes(Estadoinicial.imagesrc)) {
           visited.unshift(Estadoinicial.imagesrc);
-          localStorage.setItem("historialvisitas", JSON.stringify(visited));
+          localStorage.setItem('historialvisitas', JSON.stringify(visited));
           dict[Estadoinicial.imagesrc] = fechaapi;
-          localStorage.setItem("diccionario", JSON.stringify(dict));
+          localStorage.setItem('diccionario', JSON.stringify(dict));
 
           console.log(visited);
         }
       } else {
-        video.style.display = "none";
-        video.src = "";
-        photo.style.display = "block";
+        video.style.display = 'none';
+        video.src = '';
+        photo.style.display = 'block';
         /*   miniatura.style.display ="block" */
-        photo.src =
-          "https://res.cloudinary.com/dquxfl0fe/image/upload/v1657344274/API-GA/astronauta_ulcwcc.jpg";
+        photo.src = "https://res.cloudinary.com/dquxfl0fe/image/upload/v1657344274/API-GA/astronauta_ulcwcc.jpg";
         /*   miniatura.src=astronauta */
-        titulo.innerHTML = "Recurso no encontrado ";
-        const explanation = document.getElementById("explanation");
+        titulo.innerHTML = 'Recurso no encontrado ';
+        const explanation = document.getElementById('explanation');
         explanation.innerHTML =
-          "Nothing has been found. Remember that we have a selection of our favorite resources on the main menu.";
+          'Nothing has been found. Remember that we have a selection of our favorite resources on the main menu.';
       }
     }
     console.log(Estadoinicial.Data);
     if (visited.length > 0) {
-      const history = document.getElementById("history");
-      history.style.display = "block";
+      const history = document.getElementById('history');
+      history.style.display = 'block';
     } else {
-      const history = document.getElementById("history");
-      history.style.display = "none";
+      const history = document.getElementById('history');
+      history.style.display = 'none';
     }
   } catch (error) {
     console.log(error);
-    const photo = document.getElementById("fotodeldia");
-    const miniatura = document.getElementById("miniatura");
-    const video = document.getElementById("video");
-    const titulo = document.querySelector("#head");
+    const photo = document.getElementById('fotodeldia');
+    const miniatura = document.getElementById('miniatura');
+    const video = document.getElementById('video');
+    const titulo = document.querySelector('#head');
     /*  video.style.display ="none" */
     /*  video.src="" */
     /* photo.style.display ="block"
@@ -395,19 +398,19 @@ const APOD = async () => {
 
 function reducer(state = Estadoinicial, action) {
   switch (action.type) {
-    case "TODAYPHOTO": {
+    case 'TODAYPHOTO': {
       fechaapi = new Date().toJSON().slice(0, 10);
       fechaapi = fechaapi.toString();
-      const nextrandom = document.getElementById("nextrandom");
-      nextrandom.style.display = "none";
-      const deleteimage = document.getElementById("deleteimage");
-      deleteimage.style.display = "none";
+      const nextrandom = document.getElementById('nextrandom');
+      nextrandom.style.display = 'none';
+      const deleteimage = document.getElementById('deleteimage');
+      deleteimage.style.display = 'none';
       APOD();
       return {
         ...state,
       };
     }
-    case "LOADPHOTO": {
+    case 'LOADPHOTO': {
       state.fecha = action.payload.id;
       fechaapi = state.fecha;
       fechaapi = fechaapi.toString();
@@ -416,35 +419,35 @@ function reducer(state = Estadoinicial, action) {
         ...state,
       };
     }
-    case "CLICKMINIATURA": {
-      const photo = document.getElementById("fotodeldia");
-      const hd = document.getElementById("hd");
-      hd.style.display = "none";
-      const nextrandom = document.getElementById("nextrandom");
-      nextrandom.style.display = "none";
-      const deleteimage = document.getElementById("deleteimage");
-      deleteimage.style.display = "none";
+    case 'CLICKMINIATURA': {
+      const photo = document.getElementById('fotodeldia');
+      const hd = document.getElementById('hd');
+      hd.style.display="none"
+      const nextrandom = document.getElementById('nextrandom');
+      nextrandom.style.display="none"
+      const deleteimage = document.getElementById('deleteimage');
+      deleteimage.style.display="none"
       photo.src = action.payload.link;
       photo.imageSrc = action.payload.link;
       fechaapi = dict[action.payload.link];
 
       APOD();
-      const explanation = document.getElementById("explanation");
+      const explanation = document.getElementById('explanation');
       explanation.innerHTML = Estadoinicial.explanation;
 
       window.scroll({
         top: 0,
         left: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
 
       return {
         ...state,
       };
     }
-    case "LIMPIARSTORAGE": {
-      localStorage.removeItem("historialvisitas");
-      document.querySelector("#history").click();
+    case 'LIMPIARSTORAGE': {
+      localStorage.removeItem('historialvisitas');
+      document.querySelector('#history').click();
       visited = [];
 
       APOD();
@@ -455,119 +458,118 @@ function reducer(state = Estadoinicial, action) {
         ...state,
       };
     }
-    case "NOTREMOVE": {
-      document.querySelector("#history").click();
+    case 'NOTREMOVE': {
+       document.querySelector('#history').click();
       return {
         ...state,
       };
     }
-    case "CLOSEEXPLANATION": {
-      document.querySelector("#explanationbutton").click();
+    case 'CLOSEEXPLANATION': {
+      document.querySelector('#explanationbutton').click();
       window.scroll({
         top: 0,
         left: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
 
       return {
         ...state,
       };
     }
-    case "HIGHTDEFINITION": {
-      const photo = document.getElementById("fotodeldia");
+    case 'HIGHTDEFINITION': {
+      const photo = document.getElementById('fotodeldia');
       photo.src = Estadoinicial.hdimagesrc;
       window.scroll({
         top: 0,
         left: 0,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
 
       return {
         ...state,
       };
     }
-    case "APPLYDATE": {
-      document.querySelector("#mensaje").click();
-      const videoplay = document.getElementById("video");
-      videoplay.src = "";
-      const nextrandom = document.getElementById("nextrandom");
-      nextrandom.style.display = "none";
-      const deleteimage = document.getElementById("deleteimage");
-      deleteimage.style.display = "none";
+    case 'APPLYDATE': {
+      document.querySelector('#mensaje').click();
+       const videoplay = document.getElementById('video');
+       videoplay.src = '';
+       const nextrandom = document.getElementById('nextrandom');
+       nextrandom.style.display = 'none';
+       const deleteimage = document.getElementById('deleteimage');
+       deleteimage.style.display = 'none';
       APOD();
       return {
         ...state,
       };
     }
-    case "FAVORITOS": {
-      document.querySelector("#favoritos").click();
+    case 'FAVORITOS': {
+      document.querySelector('#favoritos').click();
       aleatorio = Math.floor(Math.random() * imagelist.length);
       fechaapi = imagelist[aleatorio];
-      const nextrandom = document.getElementById("nextrandom");
-      nextrandom.style.display = "none";
-      const deleteimage = document.getElementById("deleteimage");
-      deleteimage.style.display = "none";
+      const nextrandom = document.getElementById('nextrandom');
+      nextrandom.style.display = 'none';
+      const deleteimage = document.getElementById('deleteimage');
+      deleteimage.style.display = 'none';
       APOD();
       return {
         ...state,
       };
     }
-    case "VIDEOFAVORITOS": {
-      document.querySelector("#favoritos").click();
+    case 'VIDEOFAVORITOS': {
+      document.querySelector('#favoritos').click();
       aleatorio = Math.floor(Math.random() * videolist.length);
       fechaapi = videolist[aleatorio];
       APOD();
-
+      
       return {
         ...state,
       };
     }
-    case "MENURANDOM": {
-      document.querySelector("#favoritos").click();
+    case 'MENURANDOM': {
+      document.querySelector('#favoritos').click();
       return {
         ...state,
       };
     }
 
-    case "DELETEIMAGE": {
+    case 'DELETEIMAGE': {
       delete dict[Estadoinicial.imagesrc];
-      visited = visited.filter((item) => item !== Estadoinicial.imagesrc);
-      localStorage.setItem("historialvisitas", JSON.stringify(visited));
-      const photo = document.getElementById("fotodeldia");
-      photo.style.display = "none";
-      const video = document.getElementById("video");
-      const divvideo = document.getElementById("div-video");
-      divvideo.style.display = "block";
-      video.src =
-        "https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1";
-      const botoneselemento = document.getElementById("botones-elemento");
-      botoneselemento.style.display = "none";
-      const explanation = document.getElementById("explanation");
+      visited = visited.filter(item => item !== Estadoinicial.imagesrc);
+      localStorage.setItem('historialvisitas', JSON.stringify(visited));
+      const photo = document.getElementById('fotodeldia');
+      photo.style.display = "none"
+      const video = document.getElementById('video');
+      const divvideo = document.getElementById('div-video');
+      divvideo.style.display = "block"
+      video.src="https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1"
+      const botoneselemento = document.getElementById('botones-elemento');
+      botoneselemento.style.display="none"
+      const explanation = document.getElementById('explanation');
       explanation.innerHTML =
-        "The image has been removed. Remember that we have a selection of our favorite resources on the main menu";
-      const head = document.getElementById("head");
-      head.innerHTML = "Image has been successfully removed";
+        'The image has been removed. Remember that we have a selection of our favorite resources on the main menu';
+      const head = document.getElementById('head');
+      head.innerHTML = 'Image has been successfully removed';
       return {
         ...state,
       };
     }
-
-    case "NASALINK": {
-      window.open("https://www.nasa.gov/nasalive", "_blank");
-
-      return {
-        ...state,
-      };
-    }
-    case "ADECCOLINK": {
-      window.open("https://fundacionadecco.org/", "_blank");
+    
+    case 'NASALINK': {
+      window.open('https://www.nasa.gov/nasalive', '_blank');
 
       return {
         ...state,
       };
     }
-    case "GALINK": {
-      window.open("https://generalassemb.ly/", "_blank");
+    case 'ADECCOLINK': {
+      window.open('https://fundacionadecco.org/', '_blank');
+
+      return {
+        ...state,
+      };
+    }
+    case 'GALINK': {
+      window.open('https://generalassemb.ly/', '_blank');
 
       return {
         ...state,
@@ -584,8 +586,8 @@ function comenzar() {
   fechaapi = new Date().toJSON().slice(0, 10);
   fechaapi = fechaapi.toString();
 
-  visited = JSON.parse(localStorage.getItem("historialvisitas"));
-  dict = JSON.parse(localStorage.getItem("diccionario"));
+  visited = JSON.parse(localStorage.getItem('historialvisitas'));
+  dict = JSON.parse(localStorage.getItem('diccionario'));
   if (visited === null) {
     visited = [];
     dict = {};
@@ -593,14 +595,12 @@ function comenzar() {
   window.scroll({
     top: 0,
     left: 0,
-    behavior: "smooth",
+    behavior: 'smooth',
   });
+
 }
 
-function handleClick(e) {
-  e.preventDefault();
-  console.log("The link was clicked.");
-}
+
 
 export default function Main() {
   const [state, dispatch] = useReducer(reducer, Estadoinicial);
@@ -619,14 +619,14 @@ export default function Main() {
                 id="cambiar"
                 type="button"
                 className="btn btn-outline-info btn-sm boton-cabecera animate__animated animate__zoomIn"
-                onClick={(event) =>
+                onClick={event =>
                   dispatch({
-                    type: "TODAYPHOTO",
-                    payload: { id: "cambiar" },
+                    type: 'TODAYPHOTO',
+                    payload: { id: 'cambiar' },
                   })
                 }
               >
-                Today's photo OR Video{" "}
+                Today's photo OR Video{' '}
               </button>
 
               <button
@@ -649,7 +649,7 @@ export default function Main() {
                 aria-expanded="false"
                 aria-controls="collapsefavoritos"
               >
-                Our fovourites Resorces{" "}
+                Our fovourites Resorces{' '}
               </button>
             </div>
           </div>
@@ -657,6 +657,13 @@ export default function Main() {
 
         {/* zona para opciones aside ------------------------------------------------------------- */}
         <div class="col-2  aside ">
+          <div class="div-flex">
+            <Link to="/Meteors">
+              <button type="button" class="btn btn-primary button-meteors ">
+                Go to Meteorite Map
+              </button>
+            </Link>
+          </div>
           <div class="div-flex">
             <button
               className="btn btn-outline-secondary history "
@@ -679,9 +686,9 @@ export default function Main() {
                 className="miniatura "
                 src={url}
                 alt="miniatura foto Nasa"
-                onClick={(event) =>
+                onClick={event =>
                   dispatch({
-                    type: "CLICKMINIATURA",
+                    type: 'CLICKMINIATURA',
                     payload: { link: url, index: url },
                   })
                 }
@@ -697,23 +704,23 @@ export default function Main() {
             <div class="card card-body mensaje-gris-oscuro animate__animated animate__fadeIn">
               <div
                 style={{
-                  margin: "auto",
-                  display: "block",
-                  width: "50vw",
+                  margin: 'auto',
+                  display: 'block',
+                  width: '50vw',
                 }}
               >
                 <h4>Every day a photo, a video, or a game</h4>
                 <TextField
-                  style={{ width: "30vw" }}
+                  style={{ width: '30vw' }}
                   id="date"
                   className="datepicker"
                   label="Choose your day"
                   type="date"
                   value={state.fecha}
                   /*  defaultValue={state.Data.date} */
-                  onInput={(e) =>
+                  onInput={e =>
                     dispatch({
-                      type: "LOADPHOTO",
+                      type: 'LOADPHOTO',
                       payload: { id: e.target.value },
                     })
                   }
@@ -724,9 +731,9 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-secondary btn-lg boton-fecha button-apply"
-                  onClick={(e) =>
+                  onClick={e =>
                     dispatch({
-                      type: "APPLYDATE",
+                      type: 'APPLYDATE',
                       payload: { id: e.target.value },
                     })
                   }
@@ -747,22 +754,22 @@ export default function Main() {
                 texto para empatizar con la comunidad hispanohablante que ha
                 crecido un 70 % en los últimos 30 años. 591 millones de personas
                 en todo el mundo hablan español, según el último anuario del
-                Instituto Cervantes. (14 de Octubre 2021){" "}
+                Instituto Cervantes. (14 de Octubre 2021){' '}
               </p>
               <p class="animate__animated animate__fadeIn white">
                 Your browsing history on this site is stored exclusively in your
                 browser's storage. You can remove this record at any time. Also
                 a pair: key/value, is in charge of showing you again any of the
-                images that you keep.{" "}
+                images that you keep.{' '}
               </p>
 
               <div className="div-flex">
                 <button
                   type="button"
                   class="btn btn-danger btn-sm fit-button animate__animated animate__heartBeat"
-                  onClick={(e) =>
+                  onClick={e =>
                     dispatch({
-                      type: "LIMPIARSTORAGE",
+                      type: 'LIMPIARSTORAGE',
                       payload: { id: e.target.value },
                     })
                   }
@@ -772,9 +779,9 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button "
-                  onClick={(e) =>
+                  onClick={e =>
                     dispatch({
-                      type: "NOTREMOVE",
+                      type: 'NOTREMOVE',
                       payload: { id: e.target.value },
                     })
                   }
@@ -791,15 +798,15 @@ export default function Main() {
             >
               <p className="animate__animated animate__fadeIn">
                 We have selected the images and videos that we we liked the
-                most. We hope you like them.{" "}
+                most. We hope you like them.{' '}
               </p>
               <div className="div-flex">
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button"
-                  onClick={(e) =>
+                  onClick={e =>
                     dispatch({
-                      type: "FAVORITOS",
+                      type: 'FAVORITOS',
                       payload: { id: e.target.value },
                     })
                   }
@@ -809,9 +816,9 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button"
-                  onClick={(e) =>
+                  onClick={e =>
                     dispatch({
-                      type: "VIDEOFAVORITOS",
+                      type: 'VIDEOFAVORITOS',
                       payload: { id: e.target.value },
                     })
                   }
@@ -823,9 +830,9 @@ export default function Main() {
                   class="close btn btn-outline-secondary btn-sm fit-button"
                   data-dismiss="alert"
                   aria-label="Close"
-                  onClick={(e) =>
+                  onClick={e =>
                     dispatch({
-                      type: "MENURANDOM",
+                      type: 'MENURANDOM',
                       payload: { id: e.target.value },
                     })
                   }
@@ -845,9 +852,9 @@ export default function Main() {
               <button
                 type="button"
                 class="btn btn-secondary btn-sm fit-button"
-                onClick={(e) =>
+                onClick={e =>
                   dispatch({
-                    type: "CLOSEEXPLANATION",
+                    type: 'CLOSEEXPLANATION',
                     payload: { id: e.target.value },
                   })
                 }
@@ -858,8 +865,8 @@ export default function Main() {
           </div>
           <h1
             id="head"
-            onInput={(event) =>
-              dispatch({ type: "CARGARAPI", payload: { id: "head" } })
+            onInput={event =>
+              dispatch({ type: 'CARGARAPI', payload: { id: 'head' } })
             }
           >
             {state.Data.title}
@@ -881,9 +888,9 @@ export default function Main() {
               type="button"
               id="hd"
               class="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
-              onClick={(e) =>
+              onClick={e =>
                 dispatch({
-                  type: "HIGHTDEFINITION",
+                  type: 'HIGHTDEFINITION',
                   payload: { id: e.target.value },
                 })
               }
@@ -894,9 +901,9 @@ export default function Main() {
               type="button"
               id="deleteimage"
               class="btn btn-outline-danger button-in-collapse animate__animated animate__slideInRight"
-              onClick={(e) =>
+              onClick={e =>
                 dispatch({
-                  type: "DELETEIMAGE",
+                  type: 'DELETEIMAGE',
                   payload: { id: e.target.value },
                 })
               }
@@ -907,9 +914,9 @@ export default function Main() {
               type="button"
               id="nextrandom"
               class="btn btn-outline-info button-in-collapse animate__animated animate__slideInRight "
-              onClick={(e) =>
+              onClick={e =>
                 dispatch({
-                  type: "MENURANDOM",
+                  type: 'MENURANDOM',
                   payload: { id: e.target.value },
                 })
               }
@@ -950,9 +957,9 @@ export default function Main() {
               src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657192729/API-GA/adecco_o0ddcs.png"
               className=" imagen-flex logo-click "
               alt="logo fundación Adecco"
-              onClick={(e) =>
+              onClick={e =>
                 dispatch({
-                  type: "ADECCOLINK",
+                  type: 'ADECCOLINK',
                   payload: { id: e.target.value },
                 })
               }
@@ -961,9 +968,9 @@ export default function Main() {
               src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657192742/API-GA/ga_atwyd7.png"
               className=" imagen-flex logo-click "
               alt="logo General Assemby"
-              onClick={(e) =>
+              onClick={e =>
                 dispatch({
-                  type: "GALINK",
+                  type: 'GALINK',
                   payload: { id: e.target.value },
                 })
               }
@@ -972,9 +979,9 @@ export default function Main() {
               src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657194000/API-GA/nasa-logo_w5ebmi.png"
               className=" imagen-flex nasa-logo"
               alt="logo Nasa"
-              onClick={(e) =>
+              onClick={e =>
                 dispatch({
-                  type: "NASALINK",
+                  type: 'NASALINK',
                   payload: { id: e.target.value },
                 })
               }
