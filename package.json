@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "json-loader": "^0.5.7",
+    "react-snap": "^1.23.0",
     "transform-loader": "^0.2.4",
     "webworkify-webpack": "^1.0.6"
   }

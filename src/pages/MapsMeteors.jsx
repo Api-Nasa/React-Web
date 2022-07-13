@@ -3,7 +3,7 @@ import Maps from '../components/Maps.jsx'
 
 function MapsMeteors() {
   return (
-    <div>
+    <div >
       <Maps />
     </div>
   );

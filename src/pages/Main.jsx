@@ -13,12 +13,6 @@ import atom from '../assets/gifs/atom.gif';
 /* import Cabecerainicio from '../components/Cabecerainicio'; */
 
 const apikey = 'kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t';
-/* const heading = document.querySelector('#head'); */
-/* heading.textContent = 'Astronomy Picture of the Day'; */
-const dateBox = document.querySelector('#date');
-/* const title = document.querySelector('.title'); */
-/* const image = document.querySelector('img');
-const contentBox = document.querySelector('.explain'); */
 let fechaapi = '';
 let visited = [];
 let aleatorio=0
@@ -264,6 +258,7 @@ let videolist = [
   "2021-09-22",
   "2021-09-05",
   "2021-08-25",
+  "2021-07-14",
   "2019-09-03",
   "2019-07-17",
   "2017-01-16",
@@ -273,7 +268,6 @@ let videolist = [
   "2016-11-05",
   "2016-09-26",
   "2016-09-21",
-  "2016-09-19",
   "2015-10-28",
   "2015-12-02",
   "2015-11-09",
@@ -284,7 +278,7 @@ const Estadoinicial = {
   title: '',
   fecha: '',
   contentBox: '',
-  imagesrc:   'https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1',
+  imagesrc:   '//www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1',
   hdimagesrc: '',
   videosrc: '',
   datebox: '',
@@ -541,7 +535,7 @@ function reducer(state = Estadoinicial, action) {
       const video = document.getElementById('video');
       const divvideo = document.getElementById('div-video');
       divvideo.style.display = "block"
-      video.src="https://www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1"
+      video.src="//www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1"
       const botoneselemento = document.getElementById('botones-elemento');
       botoneselemento.style.display="none"
       const explanation = document.getElementById('explanation');
