@@ -18,4 +18,97 @@
   z-index: 1 !important;
   padding: 6px;
   font-weight: bold;
+  border-radius: 10px;
+}
+.lat-long{
+  display: inline-block;
+}
+.marker {
+  background-image: url(https://res.cloudinary.com/dquxfl0fe/image/upload/v1657878198/API-GA/puntorojo3_hcgllx.png);
+  background-size: cover;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.oculto{
+  display:none
+}
+
+.fly{
+display: inline-block;
+  margin: 12px;
+ /*  background-color: #404040; */
+  color: #ffffff;
+  z-index: 1 !important;
+ margin-left: 2rem;
+  font-weight: bold;
+
+}
+.menu-meteoritos{
+  display: block;
+position: relative;
+margin: 0px auto;
+margin-right: 5rem;
+margin-top: 3rem;
+height:fit-content;
+padding: 10px;
+border: none;
+border-radius: 3px;
+font-size: 12px;
+text-align: center;
+color: #fff;
+
+float: right;
+
+}
+
+.blue-text{
+  color:var(--blue-first)
+}
+
+  hr { background-color:var(--blue-first); 
+    height: 1px; 
+    border: 0;
+   }
+
+
+
+a{
+  text-decoration:none;
+}
+.modal-dialog-centered{
+  max-width: 70vw;
+  margin: 0 auto;
+ 
+}
+.mymodal{
+  background-color: var(--dark-usage);
+  opacity: 0.9;
+   color:white;
+   overflow: hidden;
+}
+
+
+.flex-modal{
+  display: flex;
+ flex-direction: row;
+ justify-content:center;
+ justify-items: center;
+ align-items: center;
+  margin:1rem;
+
+ 
+ 
+}
+.img-modal{
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1rem;;
+}  
+.boton-flex{
+  min-width: 20%;
+  margin-left: 2rem;
 }

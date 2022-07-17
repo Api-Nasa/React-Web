@@ -613,7 +613,7 @@ export default function Main() {
                 id="cambiar"
                 type="button"
                 className="btn btn-outline-info btn-sm boton-cabecera animate__animated animate__zoomIn"
-                onClick={event =>
+                onClick={(event) =>
                   dispatch({
                     type: 'TODAYPHOTO',
                     payload: { id: 'cambiar' },
@@ -659,6 +659,13 @@ export default function Main() {
             </Link>
           </div>
           <div class="div-flex">
+            <Link to="/Iss">
+              <button type="button" class="btn btn-primary button-meteors ">
+                Go to Map ISS Location
+              </button>
+            </Link>
+          </div>
+          <div class="div-flex">
             <button
               className="btn btn-outline-secondary history "
               type="button"
@@ -680,7 +687,7 @@ export default function Main() {
                 className="miniatura "
                 src={url}
                 alt="miniatura foto Nasa"
-                onClick={event =>
+                onClick={(event) =>
                   dispatch({
                     type: 'CLICKMINIATURA',
                     payload: { link: url, index: url },
@@ -712,7 +719,7 @@ export default function Main() {
                   type="date"
                   value={state.fecha}
                   /*  defaultValue={state.Data.date} */
-                  onInput={e =>
+                  onInput={(e) =>
                     dispatch({
                       type: 'LOADPHOTO',
                       payload: { id: e.target.value },
@@ -725,7 +732,7 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-secondary btn-lg boton-fecha button-apply"
-                  onClick={e =>
+                  onClick={(e) =>
                     dispatch({
                       type: 'APPLYDATE',
                       payload: { id: e.target.value },
@@ -761,7 +768,7 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-danger btn-sm fit-button animate__animated animate__heartBeat"
-                  onClick={e =>
+                  onClick={(e) =>
                     dispatch({
                       type: 'LIMPIARSTORAGE',
                       payload: { id: e.target.value },
@@ -773,7 +780,7 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button "
-                  onClick={e =>
+                  onClick={(e) =>
                     dispatch({
                       type: 'NOTREMOVE',
                       payload: { id: e.target.value },
@@ -798,7 +805,7 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button"
-                  onClick={e =>
+                  onClick={(e) =>
                     dispatch({
                       type: 'FAVORITOS',
                       payload: { id: e.target.value },
@@ -810,7 +817,7 @@ export default function Main() {
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button"
-                  onClick={e =>
+                  onClick={(e) =>
                     dispatch({
                       type: 'VIDEOFAVORITOS',
                       payload: { id: e.target.value },
@@ -824,7 +831,7 @@ export default function Main() {
                   class="close btn btn-outline-secondary btn-sm fit-button"
                   data-dismiss="alert"
                   aria-label="Close"
-                  onClick={e =>
+                  onClick={(e) =>
                     dispatch({
                       type: 'MENURANDOM',
                       payload: { id: e.target.value },
@@ -846,7 +853,7 @@ export default function Main() {
               <button
                 type="button"
                 class="btn btn-secondary btn-sm fit-button"
-                onClick={e =>
+                onClick={(e) =>
                   dispatch({
                     type: 'CLOSEEXPLANATION',
                     payload: { id: e.target.value },
@@ -859,7 +866,7 @@ export default function Main() {
           </div>
           <h1
             id="head"
-            onInput={event =>
+            onInput={(event) =>
               dispatch({ type: 'CARGARAPI', payload: { id: 'head' } })
             }
           >
@@ -882,7 +889,7 @@ export default function Main() {
               type="button"
               id="hd"
               class="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
-              onClick={e =>
+              onClick={(e) =>
                 dispatch({
                   type: 'HIGHTDEFINITION',
                   payload: { id: e.target.value },
@@ -895,7 +902,7 @@ export default function Main() {
               type="button"
               id="deleteimage"
               class="btn btn-outline-danger button-in-collapse animate__animated animate__slideInRight"
-              onClick={e =>
+              onClick={(e) =>
                 dispatch({
                   type: 'DELETEIMAGE',
                   payload: { id: e.target.value },
@@ -908,7 +915,7 @@ export default function Main() {
               type="button"
               id="nextrandom"
               class="btn btn-outline-info button-in-collapse animate__animated animate__slideInRight "
-              onClick={e =>
+              onClick={(e) =>
                 dispatch({
                   type: 'MENURANDOM',
                   payload: { id: e.target.value },
@@ -939,6 +946,7 @@ export default function Main() {
               id="video"
               width="853"
               height="480"
+              loading="lazy"
               src={state.imagesrc}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -951,7 +959,7 @@ export default function Main() {
               src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657192729/API-GA/adecco_o0ddcs.png"
               className=" imagen-flex logo-click "
               alt="logo fundación Adecco"
-              onClick={e =>
+              onClick={(e) =>
                 dispatch({
                   type: 'ADECCOLINK',
                   payload: { id: e.target.value },
@@ -962,7 +970,7 @@ export default function Main() {
               src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657192742/API-GA/ga_atwyd7.png"
               className=" imagen-flex logo-click "
               alt="logo General Assemby"
-              onClick={e =>
+              onClick={(e) =>
                 dispatch({
                   type: 'GALINK',
                   payload: { id: e.target.value },
@@ -973,7 +981,7 @@ export default function Main() {
               src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657194000/API-GA/nasa-logo_w5ebmi.png"
               className=" imagen-flex nasa-logo"
               alt="logo Nasa"
-              onClick={e =>
+              onClick={(e) =>
                 dispatch({
                   type: 'NASALINK',
                   payload: { id: e.target.value },

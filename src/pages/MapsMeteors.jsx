@@ -1,10 +1,11 @@
 import React from 'react';
-import Maps from '../components/Maps.jsx'
+import MapsMet from '../components/MapsMet.jsx'
 
 function MapsMeteors() {
   return (
-    <div >
-      <Maps />
+    <div>
+      <MapsMet />
+     
     </div>
   );
 }
