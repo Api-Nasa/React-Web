@@ -187,6 +187,12 @@ h6{
 h3{
   color:#77d5ec;
 }
+.title{
+margin-left: 1rem;
+}
+.listado-oculto{
+  display:none
+}
 
 @media (max-width: 768px) {  
   .aside{
@@ -197,5 +203,15 @@ h3{
   }
   .button-apply{
   margin:2rem;
+}
+.logo-click{
+  margin-top: 2rem;
+   max-width: 30%;
+   height: auto;
+     border-radius: 8px;
+   cursor: pointer;
+}
+.listado-oculto{
+  display:block
 }
 }  

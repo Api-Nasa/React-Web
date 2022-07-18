@@ -2,30 +2,27 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import mapboxgl from 'mapbox-gl';
 import '../styles/Maps.css';
-function askConfirmation(evt) {
-  var msg =
-    'Si recarga la página perdera todos los datos Marcadores.\n¿Deseas recargar la página?';
-  evt.returnValue = msg;
-  
-  return msg;
-}
-
-window.addEventListener('beforeunload', askConfirmation);
 
 let url = "https://data.nasa.gov/resource/gh4g-9sfh.json";
-let myJson=""
-fetch(url)
-    .then(function(response){
-        return response.json();
+let myJson = ""
+try {
+  fetch(url)
+    .then(function(response) {
+      return response.json();
     })
-    .then(function(data){
-        console.log(data);
-        myJson=data
-      
-    })
+    .then(function(data) {
+      console.log(data);
+      myJson = data;
+    });
+} catch (error) {
+  console.error(error);
+  
+  // expected output: ReferenceError: nonExistentFunction is not defined
+  // Note - error messages will vary depending on browser
+}
+
  
-mapboxgl.accessToken =
-  'your key';
+mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 const MapsMet = () => {
   const mapContainerRef = useRef(null);
@@ -48,15 +45,27 @@ const MapsMet = () => {
       projection: 'globe', // display the map as a 3D globe
     });
     for (let meteorito of myJson) {
+     
     let html='<h6> Name: '+meteorito.name+'</h6><p>Masa en Kg: '+parseInt(meteorito.mass)/1000+'</p>'
     let addMarker = () => {
-      
-      const marker = new mapboxgl.Marker();
-      const minPopup = new mapboxgl.Popup({closeOnClick: false, closeButton: false})
-      minPopup.setHTML( html);
-      marker.setPopup(minPopup);
-      marker.setLngLat([meteorito.geolocation.longitude,meteorito.geolocation.latitude]);
-      marker.addTo(map);
+      try {
+        const marker = new mapboxgl.Marker();
+        const minPopup = new mapboxgl.Popup({
+          closeOnClick: false,
+          closeButton: false,
+        });
+        minPopup.setHTML(html);
+        marker.setPopup(minPopup);
+        marker.setLngLat([
+          meteorito.geolocation.longitude,
+          meteorito.geolocation.latitude,
+        ]);
+        marker.addTo(map);
+      } catch (error) {
+        console.error(error);
+        // expected output: ReferenceError: nonExistentFunction is not defined
+        // Note - error messages will vary depending on browser
+      }
     };
       map.on('load', addMarker);  
       
@@ -161,7 +170,7 @@ const MapsMet = () => {
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  
+ 
   return (
     <div>
       <div className="sidebarStyle">
