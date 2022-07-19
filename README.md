@@ -1,23 +1,26 @@
 # React-Web Api-Nasa
-## Final Course Project with General Assambly to consume several Nasa APIs
+## Final Course Project. Consuming several Nasa APIs.
+----------------------------------------------------------------
+### Thank you very much to the Adecco Foundation for believing in us.
+<a target="_blank" rel="noopener noreferrer" href="https://fundacionadecco.org/becas-y-ayudas/senior/"><img src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657192729/API-GA/adecco_o0ddcs.png" alt="Fundación Adecco" style="max-width: 40%;border-radius:1rem;margin-top:1rem"></a>
+### And thanks also to the technical training deployed by General Assembly
 
-<a target="_blank" rel="noopener noreferrer" href="https://pataruco.github.io/ga-assets/assets/logos/ga.svg"><img src="https://pataruco.github.io/ga-assets/assets/logos/ga.svg" alt="" style="max-width: 10%;"></a>
- - *This article can also be read in [Spanish](README-es-ES.md).*
+<a target="_blank" rel="noopener noreferrer" href="https://generalassemb.ly/"><img src="https://pataruco.github.io/ga-assets/assets/logos/ga.svg" alt="General Assembly" style="max-width: 10%;"></a>
+
+
+ - This article is written in English but you can see its version in [Spanish](README-es-ES.md)
  - ## Demo
-- If you want to see the demo of this project deployed, you can visit [Demo of the proyect API-NASA](https://react-api-nasa.netlify.app/)
+- If you want to see the demo of this project deployed, you can visit [API-NASA project Demo](https://react-api-nasa.netlify.app/)
 - ![](https://a.slack-edge.com/production-standard-emoji-assets/13.0/google-medium/1fac2@2x.png)
-  We have decided to work as a team as a practice of collaborative work in Web development.
-  - project developed by [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
+- We have decided to work as a team as a practice of collaborative work in Web development.
+- project by [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
 
+   
+<div style="display:flex;border:solid 3px;border-color:white;border-radius:2rem;width:fit-content;margin:2rem;background-color:rgb(60, 108, 163)">
+<a target="_blank" rel="noopener noreferrer" href="https://api.nasa.gov/"><img src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657194000/API-GA/nasa-logo_w5ebmi.png" alt="Logo Nasa" style="max-width: 60%; margin-top:1rem;margin-left:3rem"></a>
 
-![Logo Nasa](https://res.cloudinary.com/dquxfl0fe/image/upload/v1657194000/API-GA/nasa-logo_w5ebmi.png)
-
-
-
-
-
-
-
+<p style="color:white;margin-top:5rem;margin-right:5rem">Click on the Nasa logo to learn more about APIs</p>
+</div>
 
 
 
@@ -26,7 +29,11 @@
 
 
 
-## Hooks and technologies used in React Bundle
+
+
+
+
+## Hooks and technologies used in this React Bundle
 
 - Hooks used:  `usestate`, `usereducer`, `useref`, `useeffects`, 
 
