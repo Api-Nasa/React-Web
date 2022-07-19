@@ -1,47 +1,85 @@
-# React-Web
-<<<<<<< Updated upstream
-
-## Proyect Web development 2022 API NASA
-
-### Proyecto final de Curso con General Assambly
+# React-Web Api-Nasa
+## Final Course Project with General Assambly to consume several Nasa APIs
 
 <a target="_blank" rel="noopener noreferrer" href="https://pataruco.github.io/ga-assets/assets/logos/ga.svg"><img src="https://pataruco.github.io/ga-assets/assets/logos/ga.svg" alt="" style="max-width: 10%;"></a>
+ - *This article can also be read in [Spanish](README-es-ES.md).*
+ - ## Demo
+- If you want to see the demo of this project deployed, you can visit [Demo of the proyect API-NASA](https://react-api-nasa.netlify.app/)
+- ![](https://a.slack-edge.com/production-standard-emoji-assets/13.0/google-medium/1fac2@2x.png)
+  We have decided to work as a team as a practice of collaborative work in Web development.
+  - project developed by [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
 
-### Colaboradores
 
-- Eduardo Cabrera compañero de Curso y una persona llena de muchos recursos y creatividad. Hace programación en Pyton.
+![Logo Nasa](https://res.cloudinary.com/dquxfl0fe/image/upload/v1657194000/API-GA/nasa-logo_w5ebmi.png)
 
-- Claudia Muñoz compañera de Curso quien en este momento le queda muchas cosas por descubrir y aprender.
 
-Hemos decidido hacer el proyecto juntos como práctica de lo que es el trabajo colaborarivo en desarrollo Web.
-![](https://a.slack-edge.com/production-standard-emoji-assets/13.0/google-medium/1fac2@2x.png)
 
-### - Teoría del Color
 
-   Es importante respeccto al color conocer un poco de su psicología, y sobre todo:
+
+
+
+
+
+
+
+
+
+
+
+## Hooks and technologies used in React Bundle
+
+- Hooks used:  `usestate`, `usereducer`, `useref`, `useeffects`, 
+
+- As appropriate, we have used Frameworks or libraries like `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
+--------------------------------------
+--------------------------------------
+> In this exercise, the API-NASA of the astronomical image of the day is called.
+> It will also be possible to visualize on maps both the current position 
+> of the international station as well as the API that Nasa has
+> Nasa to record locations of known meteorites.
+--------------------------------------
+--------------------------------------
+## Example Apod Json Api-Nasa
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658221607/API-GA/2022-07-05_21h17_03_y8ogpw.png)
+
+
+
+
+
+### - Color Theory
+
+   It is important to know a little about the psychology of color, and above all:
     
-    - Buscar colores equilibrados: para lograrlo, utiliza colores complementarios, colores opuestos (blanco-negro) o colores de la misma gama cromática.
-    - No abusar del color: recordar que menos es más y que utilizar muchos colores puede transmitir sensación de desorden.
+    - Search for balanced colors: to achieve this, we respect the chromatic range of the chosen palette.
+    - We have tried not to use or abuse other colors, so as not to transmit a feeling of disorder..
 
-   Más sobre esta teoría: https://1drv.ms/b/s!AjXyHRH-0PymhhT2G6ryZ0YYSSiX
+   ![paleta](https://res.cloudinary.com/dquxfl0fe/image/upload/v1657994150/API-GA/paleta_sdyfk5.png)
 
 
    
 =======
 Proyect Web development 2022
->>>>>>> Stashed changes
+>>>>>>> Code Routes
 ```const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- 
-  
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="Main" element={<Main />} />
+      <Route path="Meteors" element={<Meteors />} />
+      <Route path="MapsMeteors" element={<MapsMeteors />} />
+      <Route path="Iss" element={<Iss/>} />
+      <Route path="MapsEstacionIss" element={<MapsEstacionIss />} />
       <Route path="*" element={<Error404 />} />
     </Routes>
-  </BrowserRouter>
- 
-  
+  </BrowserRouter>,
 );
+
+reportWebVitals();
+
+```
+
+>>>>>>> Private and protected Mapbox password (If you Fork the project you need to get your own)
+```
+mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 ```

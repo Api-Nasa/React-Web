@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@trendyol-js/react-carousel": "^3.0.0",
     "date-fns": "^2.28.0",
+    "dotenv": "^16.0.1",
     "framework7-react": "^7.0.5",
     "gsap": "^3.10.4",
     "jquery": "^3.6.0",

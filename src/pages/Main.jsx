@@ -308,8 +308,7 @@ const APOD = async () => {
     const photo = document.getElementById('fotodeldia');
     const video = document.getElementById('div-video');
     const titulo = document.querySelector('#head');
-    const history = document.getElementById('history');
-    history.style.display = 'block';
+    
 
     titulo.innerHTML = Estadoinicial.title;
     photo.src = Estadoinicial.imagesrc;
@@ -350,7 +349,6 @@ const APOD = async () => {
           localStorage.setItem('historialvisitas', JSON.stringify(visited));
           dict[Estadoinicial.imagesrc] = fechaapi;
           localStorage.setItem('diccionario', JSON.stringify(dict));
-
           console.log(visited);
         }
       } else {
@@ -367,13 +365,7 @@ const APOD = async () => {
       }
     }
     console.log(Estadoinicial.Data);
-    if (visited.length > 0) {
-      const history = document.getElementById('history');
-      history.style.display = 'block';
-    } else {
-      const history = document.getElementById('history');
-      history.style.display = 'none';
-    }
+    
   } catch (error) {
     console.log(error);
     const photo = document.getElementById('fotodeldia');
@@ -388,6 +380,13 @@ const APOD = async () => {
       miniatura.src=astronauta */
     /* titulo.innerHTML = "Recurso no encontrado "; */
     /* title.innerHTML = "No Internet"; */
+  }
+  if (visited.length > 1) {
+    const history = document.getElementById('history');
+    history.style.display = 'block';
+  } else {
+    const history = document.getElementById('history');
+    history.style.display = 'none';
   }
 };
 
@@ -523,6 +522,12 @@ function reducer(state = Estadoinicial, action) {
     }
     case 'MENURANDOM': {
       document.querySelector('#favoritos').click();
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+
       return {
         ...state,
       };
@@ -567,6 +572,18 @@ function reducer(state = Estadoinicial, action) {
     }
     case 'GALINK': {
       window.open('https://generalassemb.ly/', '_blank');
+
+      return {
+        ...state,
+      };
+    }
+    case 'SUBIRSCROLL': {
+      window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+
 
       return {
         ...state,
@@ -618,7 +635,7 @@ function comenzar() {
 
 export default function Main() {
   const [state, dispatch] = useReducer(reducer, Estadoinicial);
-   
+  
    Estadoinicial.title=" International Space Station [ISS] LIVE"
   return (
     <div class="container-fluid todo animate__animated animate__fadeIn">
@@ -630,7 +647,7 @@ export default function Main() {
             <h1 className="titulo-landing titulo-cabecera">
               Unofficial mirror of the NASA Astronomy Picture of the Day (APOD)
             </h1>
-            <div className="botonera-cabecera">
+            <div>
               <button
                 id="cambiar"
                 type="button"
@@ -689,7 +706,7 @@ export default function Main() {
           </div>
           <div class="div-flex">
             <button
-              className="btn btn-outline-secondary history "
+              className="btn btn-outline-secondary history oculto"
               type="button"
               id="history"
               data-bs-toggle="collapse"
@@ -700,7 +717,6 @@ export default function Main() {
             >
               Remove Image history
             </button>
-            {state.history}
           </div>
           <div>
             {visited.map((url, index) => (
@@ -814,16 +830,16 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div class="collapse marginbotton1rem" id="collapsefavoritos">
+          <div class="collapse marginbotton1rem " id="collapsefavoritos">
             <div
               id="colapsefavoritos"
-              class="card card-body mensaje-gris-oscuro"
+              class="card card-body mensaje-gris-oscuro collapse-mobile"
             >
-              <p className="animate__animated animate__fadeIn">
+              <p className="animate__animated animate__fadeIn center">
                 We have selected the images and videos that we we liked the
                 most. We hope you like them.{' '}
               </p>
-              <div className="div-flex">
+              <div className="cabecera">
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button"
@@ -836,6 +852,7 @@ export default function Main() {
                 >
                   click to view the best image (Random)
                 </button>
+
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm fit-button"
@@ -848,6 +865,8 @@ export default function Main() {
                 >
                   click to view the best Video (Random)
                 </button>
+              </div>
+              <div className="div-flex">
                 <button
                   type="button"
                   class="close btn btn-outline-secondary btn-sm fit-button"
@@ -1026,6 +1045,45 @@ export default function Main() {
               className=" imagen-flex imagenes-fondo "
               alt="fundación Adecco"
             />
+          </div>
+          <div class="div-flex">
+            <Link to="/Meteors">
+              <button
+                type="button"
+                class="btn btn-primary button-meteors map-oculto"
+              >
+                Go to Meteorite Map
+              </button>
+            </Link>
+          </div>
+          <div class="div-flex">
+            <Link to="/Iss">
+              <button
+                type="button"
+                class="btn btn-primary button-meteors map-oculto"
+              >
+                Go to Map ISS Location
+              </button>
+            </Link>
+          </div>
+          <div class="div-flex">
+            <button
+              className="btn btn-outline-secondary history history-oculto"
+              type="button"
+              id="history-movil"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseHistory"
+              data-toggle="modal"
+              aria-expanded="false"
+              aria-controls="collapseHistory"
+              onClick={event =>
+                dispatch({
+                  type: 'SUBIRSCROLL',
+                })
+              }
+            >
+              Remove Image history
+            </button>
           </div>
           <div className="listado-oculto">
             <center>Tu Historial visitado</center>

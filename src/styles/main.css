@@ -36,9 +36,12 @@ display: inline flex
 .cabecera{
  display: flex;
  flex-direction: row;
- justify-content: flex-start;
+ justify-content: center;
  justify-items: center;
  align-items: center;
+ overflow: hidden;
+ 
+  
   
 }
 .aside{
@@ -106,6 +109,8 @@ margin-top:2rem;
   background-color: var(--dark-usage);
   color:var(--textovergrey);
   margin:2rem;
+  display: flex;
+ 
   
   
 }
@@ -152,8 +157,8 @@ margin-top:2rem;
 }
 .fit-button{
   width: fit-content;
-  display:inline-block;
-  margin:1rem
+  display:block;
+  margin-left:1rem
   
 }
 .button-meteors{
@@ -193,6 +198,16 @@ margin-left: 1rem;
 .listado-oculto{
   display:none
 }
+.history-oculto{
+  display:none
+}
+.map-oculto{
+  display:none
+}
+.center{
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+}
 
 @media (max-width: 768px) {  
   .aside{
@@ -214,4 +229,16 @@ margin-left: 1rem;
 .listado-oculto{
   display:block
 }
-}  
+.history-oculto{
+  display:block
+}
+
+.map-oculto{
+  display:block
+}
+.collapse-mobile{
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+}
