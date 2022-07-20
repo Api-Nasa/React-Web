@@ -11,9 +11,10 @@
  - Este artículo esta redactado en español pero puedes ver su versión en [inglés](README.md)
  - ## Demo
 - Si quieres ver la demo de este proyecto desplegado, puedes visitar [Demostración proyecto API-NASA](https://react-api-nasa.netlify.app/)
-- ![](https://a.slack-edge.com/production-standard-emoji-assets/13.0/google-medium/1fac2@2x.png)
-  Hemos decidido trabajar en equipo como práctica de lo que es el trabajo colaborarivo en desarrollo Web.
-   proyecto realizado por [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
+- Hemos decidido trabajar en equipo como práctica de lo que es el trabajo colaborarivo en desarrollo Web.
+-   proyecto realizado por [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
+- En el siguiente enlace puedes ver el esquema principal del proyecto. [INITIAL WIREFRAME](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658301121/API-GA/dise%C3%B1o_zvjwlz.png)
+- Primera toma de contacto entre Claudia y Eduardo [COMO EMPEZAR](https://res.cloudinary.com/dquxfl0fe/image/upload/v1655767968/API-GA/primeras_ideas_gwigsq.png)
 
    
 <div style="display:flex;border:solid 3px;border-color:white;border-radius:2rem;width:fit-content;margin:2rem;background-color:rgb(60, 108, 163)">
@@ -22,22 +23,12 @@
 <p style="color:white;margin-top:5rem;margin-right:5rem">Pulse sobre el logo de Nasa para saber más acerca de las APIs</p>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 ## Hooks y tecnologias usadas en este React Bundle
 
 - Hooks usados  `usestate`, `usereducer`, `useref`, `useeffects`, 
 
 - Según a sido oportuno, hemos usado Frameworks o librerias como `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
+- Hemos usado nuestra propia CDN (Cloudinary) para alojar los medios del proyecto
 --------------------------------------
 --------------------------------------
 > En este ejecicio, se llama a la API-NASA de la imagen astronómica del día.
@@ -90,5 +81,12 @@ reportWebVitals();
 ```
 mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 ```
+## Instantanea de la Url principal
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658303540/API-GA/main_clmcmy.png)
 
 
+## Muestra Recorrido Estación internacional (Producto minimo viable)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658071685/API-GA/iis01_ihytaj.png)
+
+## Instantanea de la Url de registro de meteoritos (Minimum viable product)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658304213/API-GA/meteors-page_hgad0n.png)

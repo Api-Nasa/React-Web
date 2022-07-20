@@ -20,18 +20,7 @@ let myJson = ""
     })
 
 
-function calcularposicion() {
-  let url = 'https://api.wheretheiss.at/v1/satellites/25544';
-fetch(url)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      myJson = data
-      /*  alert(geoJson[0].geolocation.latitude) */
-    })
-}
+
   
 
 let map=""
@@ -96,39 +85,41 @@ const MapsIss = () => {
       document.getElementById('fly').click()
     });
       document.getElementById('fly').addEventListener('click', () => {
-              
-           map.flyTo({
-             center: [myJson.longitude, myJson.latitude],
-             zoom: zoomy,
-             speed: 1,
-             essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-           });
-            
-              let html =
-                '<h6> Visibilidad: ' +
-                myJson.visibility +
-                '</h6><p>Altitud km ' +
-                myJson.altitude +
-                '</p>';
-                var el = document.createElement('div');
-        el.className = 'marker';
-              let addMarker = () => {
-                const marker = new mapboxgl.Marker(el);
+           try {
+             map.flyTo({
+               center: [myJson.longitude, myJson.latitude],
+               zoom: zoomy,
+               speed: 1,
+               essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+             });
 
-                const minPopup = new mapboxgl.Popup({
-                  closeOnClick: false,
-                  closeButton: false,
-                });
-                minPopup.setHTML(html);
-                marker.setPopup(minPopup);
-                marker.setLngLat([myJson.longitude, myJson.latitude]);
-                marker.addTo(map);
-              };
-           
-      
-        
-        map.on('zoom', addMarker);  
-      
+             let html =
+               '<h6> Visibilidad: ' +
+               myJson.visibility +
+               '</h6><p>Altitud km ' +
+               myJson.altitude +
+               '</p>';
+             var el = document.createElement('div');
+             el.className = 'marker';
+             let addMarker = () => {
+               const marker = new mapboxgl.Marker(el);
+
+               const minPopup = new mapboxgl.Popup({
+                 closeOnClick: false,
+                 closeButton: false,
+               });
+               minPopup.setHTML(html);
+               marker.setPopup(minPopup);
+               marker.setLngLat([myJson.longitude, myJson.latitude]);
+               marker.addTo(map);
+             };
+
+             map.on('zoom', addMarker);
+           } catch (error) {
+             console.error(error);
+             // expected output: ReferenceError: nonExistentFunction is not defined
+             // Note - error messages will vary depending on browser
+           }
        
       });
     

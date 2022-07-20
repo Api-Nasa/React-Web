@@ -11,9 +11,12 @@
  - This article is written in English but you can see its version in [Spanish](README-es-ES.md)
  - ## Demo
 - If you want to see the demo of this project deployed, you can visit [API-NASA project Demo](https://react-api-nasa.netlify.app/)
-- ![](https://a.slack-edge.com/production-standard-emoji-assets/13.0/google-medium/1fac2@2x.png)
+
 - We have decided to work as a team as a practice of collaborative work in Web development.
 - project by [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
+- If you want to see the principal initial wireframe of this project, you see here [INITIAL WIREFRAME](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658301121/API-GA/dise%C3%B1o_zvjwlz.png)
+-  First meeting between Claudia and Eduardo [HOW TO START](https://res.cloudinary.com/dquxfl0fe/image/upload/v1655767968/API-GA/primeras_ideas_gwigsq.png)
+
 
    
 <div style="display:flex;border:solid 3px;border-color:white;border-radius:2rem;width:fit-content;margin:2rem;background-color:rgb(60, 108, 163)">
@@ -38,6 +41,7 @@
 - Hooks used:  `usestate`, `usereducer`, `useref`, `useeffects`, 
 
 - As appropriate, we have used Frameworks or libraries like `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
+- We have used our own CDN (Cloudinary) to host the project's media.
 --------------------------------------
 --------------------------------------
 > In this exercise, the API-NASA of the astronomical image of the day is called.
@@ -90,3 +94,11 @@ reportWebVitals();
 ```
 mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 ```
+## Snapshot of the main url
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658303540/API-GA/main_clmcmy.png)
+
+## Sample International Station Route (Minimum viable product)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658071685/API-GA/iis01_ihytaj.png)
+
+## Snapshot of the Meteors Url (Minimum viable product)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658304213/API-GA/meteors-page_hgad0n.png)

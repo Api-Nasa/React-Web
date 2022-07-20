@@ -368,19 +368,7 @@ const APOD = async () => {
     
   } catch (error) {
     console.log(error);
-    const photo = document.getElementById('fotodeldia');
-    const miniatura = document.getElementById('miniatura');
-    const video = document.getElementById('video');
-    const titulo = document.querySelector('#head');
-    /*  video.style.display ="none" */
-    /*  video.src="" */
-    /* photo.style.display ="block"
-      miniatura.style.display ="block"
-      photo.src =astronauta
-      miniatura.src=astronauta */
-    /* titulo.innerHTML = "Recurso no encontrado "; */
-    /* title.innerHTML = "No Internet"; */
-  }
+     }
   if (visited.length > 1) {
     const history = document.getElementById('history');
     history.style.display = 'block';
@@ -551,6 +539,11 @@ function reducer(state = Estadoinicial, action) {
         'The image has been removed. Remember that we have a selection of our favorite resources on the main menu';
       const head = document.getElementById('head');
       head.innerHTML = 'Image has been successfully removed';
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
       return {
         ...state,
       };
