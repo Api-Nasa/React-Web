@@ -1,10 +1,17 @@
+/* COMPONENTE (MAPA) UBICACION TEREORITOS REGISTRADOS NASA */
+/* ------------------------------------------------------- */
+/* Importaciones necesarias */
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import mapboxgl from 'mapbox-gl';
-import '../styles/Maps.css';
+import mapboxgl from 'mapbox-gl';  /* libreria Mapas usada */
+import '../styles/Maps.css'; /* estilo para opciones en mapas */
 
+/* URL API METEORITOS REGISTRADOS */
 let url = "https://data.nasa.gov/resource/gh4g-9sfh.json";
+/* variable global para datos api-json */
 let myJson = ""
+
+/* Obtención de datos de la API */
 try {
   fetch(url)
     .then(function(response) {
@@ -16,233 +23,232 @@ try {
     });
 } catch (error) {
   console.error(error);
-  
-  // expected output: ReferenceError: nonExistentFunction is not defined
-  // Note - error messages will vary depending on browser
 }
-
+/* clave concedida por Mapbox */
+ mapboxgl.accessToken='pk.eyJ1IjoiZ2EtZWR1YXJkbyIsImEiOiJjbDVmNzQyY3kwaHJpM2pvM29lOWVuZnVlIn0.a20bgkRxwewC43RomqCQ9g';
  
-mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
-const MapsMet = () => {
+function MapsMet() {
+  /* creación de referencia para permitir multiples renderizados por REF */
   const mapContainerRef = useRef(null);
-
+  /* Definición inicial de estados */
   const [lng, setLng] = useState(5);
   const [lat, setLat] = useState(34);
   const [zoom, setZoom] = useState(1.5);
 
-  // Initialize map when component mounts
+  /* useEffects se ejecutará pra Inicilizar el mapa cada vez que se monta o se renderiza */
   useEffect(() => {
-    
+     /* deficiones principales del Mapa */
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      /* style: 'mapbox://styles/mapbox/traffic-night-v2', */
       style: 'mapbox://styles/mapbox/satellite-v8',
-      /*  style: 'mapbox://styles/mapbox/streets-v11', */
-     /*   style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y', */
       center: [lng, lat],
       zoom: 1,
-      projection: 'globe', // display the map as a 3D globe
+      projection: 'globe'
     });
-    for (let meteorito of myJson) {
-     
-    let html='<h6> Name: '+meteorito.name+'</h6><p>Masa en Kg: '+parseInt(meteorito.mass)/1000+'</p>'
-    let addMarker = () => {
-      try {
-        const marker = new mapboxgl.Marker();
-        const minPopup = new mapboxgl.Popup({
-          closeOnClick: false,
-          closeButton: false,
-        });
-        minPopup.setHTML(html);
-        marker.setPopup(minPopup);
-        marker.setLngLat([
-          meteorito.geolocation.longitude,
-          meteorito.geolocation.latitude,
-        ]);
-        marker.addTo(map);
-      } catch (error) {
-        console.error(error);
-        // expected output: ReferenceError: nonExistentFunction is not defined
-        // Note - error messages will vary depending on browser
-      }
-    };
-      map.on('load', addMarker);  
-      
-  };
 
+    /* ITERACIONES SOBRE OBJETO JSON Y SUS ELEMENTOS*/
+    for (let meteorito of myJson) {
+
+      /* PREPARACION DE TEXTO QUE SE VERÁ EN POPUP DE CADA MARCADOR */ 
+      let html = '<h6> Name: ' + meteorito.name + '</h6><p>Masa en Kg: ' + parseInt(meteorito.mass) / 1000 + '</p>';
+      /* CREACIÓN DE CADA MARCADOR POR CADA METEORITO */
+      let addMarker = () => {
+        try {
+          const marker = new mapboxgl.Marker();
+          const minPopup = new mapboxgl.Popup({
+            closeOnClick: false,
+            closeButton: false,
+          });
+          minPopup.setHTML(html);
+          marker.setPopup(minPopup);
+          marker.setLngLat([
+            meteorito.geolocation.longitude,
+            meteorito.geolocation.latitude,
+          ]);
+          marker.addTo(map);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      map.on('load', addMarker);
+
+    };
+    /* Cuando el estilo se ha cargado, prepara el fondo estrellado */
+    /* Esta definición viene preparada desde Mapbox */
     map.on('style.load', () => {
       map.setFog({
-        color: 'rgb(186, 210, 235)', // Lower atmosphere
-        'high-color': 'rgb(36, 92, 223)', // Upper atmosphere
-        'horizon-blend': 0.02, // Atmosphere thickness (default 0.2 at low zooms)
-        'space-color': 'rgb(11, 11, 25)', // Background color
+        color: 'rgb(186, 210, 235)',
+        'high-color': 'rgb(36, 92, 223)',
+        'horizon-blend': 0.02,
+        'space-color': 'rgb(11, 11, 25)',
         'star-intensity': 0.6, // Background star brightness (default 0.35 at low zoooms )
       });
-    
-     
-      
     });
-   
-    
-    // Add navigation control (the +/- zoom buttons)
+
+     /* SE AÑADE UN CONTROL DE MAPBOX (ARRIBA Y DERECHA) PARA CONTROL DE ZOOM */
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
+    /* funciones de Mapbox para reasignar coordenadas (on move) */
     map.on('move', () => {
       setLng(map.getCenter().lng.toFixed(4));
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
     });
 
-      
-      document.getElementById('Home').addEventListener('click', () => {
-        // Fly to a origin location
-        map.flyTo({
-          center: [5, 34],
-          zoom: 1,
-          speed:0.2,
-          essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-        });
-      });
-       document.getElementById('NA').addEventListener('click', () => {
-        // Fly to a random location
-        map.flyTo({
-          center: [-96, 42],
-          zoom: 2.45,
-          speed:0.2,
-          essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-        });
-       });
-     document.getElementById('SA').addEventListener('click', () => {
-       // Fly to a random location
-       map.flyTo({
-         center: [-63, -24],
-         zoom: 2.45,
-         speed: 0.2,
-         essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-       });
-     });
-     document.getElementById('EU').addEventListener('click', () => {
-       // Fly to a random location
-       map.flyTo({
-         center: [11, 48],
-         zoom: 3.45,
-         speed: 0.2,
-         essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-       });
-     });
-      document.getElementById('AF').addEventListener('click', () => {
-       // Fly to a random location
-       map.flyTo({
-         center: [24, 5.1],
-         zoom: 2.22,
-         speed: 0.2,
-         essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-       });
-      });
-     document.getElementById('AS').addEventListener('click', () => {
-       // Fly to a random location
-       map.flyTo({
-         center: [79.8, 26],
-         zoom: 3,
-         speed: 0.2,
-         essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-       });
-     });
-     document.getElementById('OC').addEventListener('click', () => {
-       // Fly to a random location
-       map.flyTo({
-         center: [134, -23],
-         zoom: 2,
-         speed: 0.2,
-         essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-       });
-     });
+    /* LAS SIGUIENTES LINEAS SON "LAS ESCUCHAS" Y EJECUCIONES DEL DROPDOWN DE OPCIONES */
+    /* ------------------------------------------------------------------------------- */
 
-     document.getElementById('adecco').addEventListener('click', () => {
-         window.open('https://fundacionadecco.org/', '_blank');
-     })
-      document.getElementById('OC').addEventListener('click', () => {
-          window.open('https://generalassemb.ly/', '_blank');
-      })
-    
+    document.getElementById('Home').addEventListener('click', () => {
+      /* VUELA A LOS PARAMETROS ORIGINAL */
+      map.flyTo({
+        center: [5, 34],
+        zoom: 1,
+        speed: 0.2,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
+    });
+    document.getElementById('NA').addEventListener('click', () => {
+      // Fly to a random location
+      map.flyTo({
+        center: [-96, 42],
+        zoom: 2.45,
+        speed: 0.2,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
+    });
+    document.getElementById('SA').addEventListener('click', () => {
+      // Fly to a random location
+      map.flyTo({
+        center: [-63, -24],
+        zoom: 2.45,
+        speed: 0.2,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
+    });
+    document.getElementById('EU').addEventListener('click', () => {
+      // Fly to a random location
+      map.flyTo({
+        center: [11, 48],
+        zoom: 3.45,
+        speed: 0.2,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
+    });
+    document.getElementById('AF').addEventListener('click', () => {
+      // Fly to a random location
+      map.flyTo({
+        center: [24, 5.1],
+        zoom: 2.22,
+        speed: 0.2,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
+    });
+    document.getElementById('AS').addEventListener('click', () => {
+      // Fly to a random location
+      map.flyTo({
+        center: [79.8, 26],
+        zoom: 3,
+        speed: 0.2,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
+    });
+    document.getElementById('OC').addEventListener('click', () => {
+      // Fly to a random location
+      map.flyTo({
+        center: [134, -23],
+        zoom: 2,
+        speed: 0.2,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
+    });
+
+    /* escuchas y ejecución de los botones de Adecco y General Assembly */
+    document.getElementById('adecco').addEventListener('click', () => {
+      window.open('https://fundacionadecco.org/', '_blank');
+    });
+    document.getElementById('GA').addEventListener('click', () => {
+      window.open('https://generalassemb.ly/', '_blank');
+    });
+
     // Clean up on unmount
     return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // 
 
- 
+
   return (
     <div>
-      <div className="sidebarStyle">
-        <div className="lat-long">
+      <div className="sidebarStyle"> {/* zona o estilo para todas las opciones */}
+        <div className="lat-long">   {/* estilo para coordenadas */}
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
 
+        {/* BOTON QUE VA A ABRIR UN (MODAL BOOTSTRAP) CON INFORMACION SOBRE ESTE MVP*/}
         <button
           id="modal1"
           type="button"
-          class="btn btn-outline-danger btn-sm fit-button animate__animated animate__heartBeat fly"
+          className="btn btn-outline-danger btn-sm fit-button animate__animated animate__heartBeat fly"
           data-bs-toggle="modal"
-          data-bs-target="#info-meteors"
-        >
+          data-bs-target="#info-meteors">
           About this (MVP)
         </button>
+
         <div className="fly">
+          {/* ZONA DE OPCIONES DEL DROPDOWN */}
           <div class="dropdown">
             <button
-              class="btn btn-outline-secondary btn-sm dropdown-toggle"
+              className="btn btn-outline-secondary btn-sm dropdown-toggle"
               type="button"
               id="opciones"
               data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+              aria-expanded="false">
               Available Options Menu for this MPV Version
             </button>
             <ul
-              class="dropdown-menu dropdown-menu-dark"
+              className="dropdown-menu dropdown-menu-dark"
               aria-labelledby="dropdownMenuButton2"
             >
               <li>
-                <a id="Home" class="dropdown-item active" href="#opciones">
+                <a id="Home" className="dropdown-item active" href="#opciones">
                   Reset Location
                 </a>
               </li>
               <li>
-                <a id="NA" class="dropdown-item" href="#opciones">
+                <a id="NA" className="dropdown-item" href="#opciones">
                   North America
                 </a>
               </li>
               <li>
-                <a id="SA" class="dropdown-item" href="#opciones">
+                <a id="SA" className="dropdown-item" href="#opciones">
                   Soth America
                 </a>
               </li>
               <li>
-                <a id="EU" class="dropdown-item" href="#opciones">
+                <a id="EU" className="dropdown-item" href="#opciones">
                   Europe
                 </a>
               </li>
               <li>
-                <a id="AF" class="dropdown-item" href="#opciones">
+                <a id="AF" className="dropdown-item" href="#opciones">
                   Africa
                 </a>
               </li>
               <li>
-                <a id="AS" class="dropdown-item" href="#opciones">
+                <a id="AS" className="dropdown-item" href="#opciones">
                   Asia
                 </a>
               </li>
               <li>
-                <a id="OC" class="dropdown-item" href="#opciones">
+                <a id="OC" className="dropdown-item" href="#opciones">
                   Oceania
                 </a>
               </li>
               <li>
-                <hr class="dropdown-divider "></hr>
+                <hr className="dropdown-divider "></hr>
               </li>
               <li>
                 <Link to="/">
-                  <a class="dropdown-item blue-text" href="#opciones">
+                  <a className="dropdown-item blue-text" href="#opciones">
                     Go Home Page
                   </a>
                 </Link>
@@ -252,28 +258,30 @@ const MapsMet = () => {
         </div>
       </div>
 
+      {/* DIV (POR REFERENCIA) PARA RENDERIZAR EL MAPA EN MULTIPLES OCASIONES */}
       <div className="map-container" ref={mapContainerRef} />
-      <div
-        class="modal fade mymodal "
+
+       {/* CONTENIDO DEL MODAL BOOTSTRAP (INFORMACION DE PROTOTIPO O MVP) */}
+      <div className="modal fade mymodal "
         id="info-meteors"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
-          <div class="modal-content">
+        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+          <div className="modal-content">
             <div class="modal-header mymodal">
-              <h5 class="modal-title" id="exampleModalLabel">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Meteorite Landings API (MVP) -- Minimum viable product.
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body mymodal">
+            <div className="modal-body mymodal">
               <p className="blue-text">
                 Geolocation of locations based on a Nasa API using a large
                 dataset from the Meteoritical Society containing information on
@@ -386,11 +394,11 @@ const MapsMet = () => {
                 />
               </div>
             </div>
-            <div class="modal-footer mymodal">
+            <div className="modal-footer mymodal">
               <p> Api.Nasa.2022@gmail.com</p>
               <button
                 type="button"
-                class="btn btn-outline-secondary"
+                className="btn btn-outline-secondary"
                 data-bs-dismiss="modal"
               >
                 Close this Window
@@ -402,5 +410,6 @@ const MapsMet = () => {
     </div>
   );
 };
+
 
 export default MapsMet;

@@ -38,10 +38,11 @@
 
 ## Hooks and technologies used in this React Bundle
 
-- Hooks used:  `usestate`, `usereducer`, `useref`, `useeffects`, 
+- Hooks used:  `useState`, `useReducer`, `useRef`, `useEffects`
 
 - As appropriate, we have used Frameworks or libraries like `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
 - We have used our own CDN (Cloudinary) to host the project's media.
+- We have used Screenpresso software as our preferred digital tool for creating and editing our wireframes.
 --------------------------------------
 --------------------------------------
 > In this exercise, the API-NASA of the astronomical image of the day is called.
@@ -50,6 +51,11 @@
 > Nasa to record locations of known meteorites.
 --------------------------------------
 --------------------------------------
+>One of the challenges we have had to face relates to the paradigm shift we had been accustomed to
+>Vanilla Javascript programming. We, like many React developers, have had to move from class-based components 
+>to function-based components with React hooks. 
+>to function components with React hooks we have had to come to terms with the fact that state updates using objects are no longer automatically merged. 
+
 ## Example Apod Json Api-Nasa
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658221607/API-GA/2022-07-05_21h17_03_y8ogpw.png)
 

@@ -11,9 +11,8 @@ import MapsMeteors from './pages/MapsMeteors';
 import MapsEstacionIss from './pages/MapsEstacionIss';
 import Error404 from "./pages/Error404"
 import reportWebVitals from './reportWebVitals';
-require('dotenv').config();
 
- mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
+mapboxgl.accessToken='pk.eyJ1IjoiZ2EtZWR1YXJkbyIsImEiOiJjbDVmNzQyY3kwaHJpM2pvM29lOWVuZnVlIn0.a20bgkRxwewC43RomqCQ9g'; 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

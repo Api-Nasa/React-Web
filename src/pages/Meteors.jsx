@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/App.css';
 import atom from '../assets/gifs/atom.gif';
 import asteroid from '../assets/gifs/asteroid.gif';
+
 export default function Meteors() {
   return (
     <div className="App animate__animated animate__zoomIn">

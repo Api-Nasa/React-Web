@@ -25,16 +25,22 @@
 
 ## Hooks y tecnologias usadas en este React Bundle
 
-- Hooks usados  `usestate`, `usereducer`, `useref`, `useeffects`, 
+- Hooks usados   `useState`, `useReducer`, `useRef`, `useEffects` 
 
 - Según a sido oportuno, hemos usado Frameworks o librerias como `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
 - Hemos usado nuestra propia CDN (Cloudinary) para alojar los medios del proyecto
+- Hemos usado el software de Screenpresso como herramienta digital preferida para creación y edición de nuestros wireframes.
 --------------------------------------
 --------------------------------------
 > En este ejecicio, se llama a la API-NASA de la imagen astronómica del día.
 > Tambien se podran visualizar en mapas tanto la posición actual 
 > de la estación internacional como la API que tiene
 > Nasa para registrar localizaciones de meteoritos conocidos
+--------------------------------------
+--------------------------------------
+>Uno de los desafíos al que hemos tenido que enfrentarnos se refiere al cambio de paradigma al que nos tenía acostumbrado
+>la programación en vanilla Javascript. Nosotros como muchos desarrolladores de React al pasar de componentes basados ​​en clases 
+>a componentes de funciones con hooks de React hemos tenido que asimilar que las actualizaciones de estado que utilizan objetos ya no se fusionan automáticamente. 
 --------------------------------------
 --------------------------------------
 ## Muestra Apod Json Api-Nasa

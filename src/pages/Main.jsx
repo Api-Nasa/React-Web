@@ -1,22 +1,30 @@
+/* URL principal de APOD ( Astronomy Picture of the Day) */
+/* ----------------------------------------------------- */
+/* importaciones necesarias */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useReducer } from 'react';
 import TextField from '@material-ui/core/TextField';
+/* LAS SIGUIENTES IMPORTACIONES SE USAN PARA HACER ZOOM EN IMAGENES */
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
+/* IMPORTACIONES DE ESTILOS CSS */
+import '../styles/App.css';  /* pequeñas modificaciones de estilo al original de create react-app */
+import '../styles/main.css'; /* ESTILOS PRINCIPALES PROYECTO */
 
-/* import { Link } from 'react-router-dom'; */
-import '../styles/App.css';
-import '../styles/main.css';
+/* importacion local de gif de un Atomo (Guiño a React y Nasa) */
 import atom from '../assets/gifs/atom.gif';
 
-/* import Cabecerainicio from '../components/Cabecerainicio'; */
-
+/* API kEY NASA-APOD */
 const apikey = 'kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t';
+
+/* VARIABLE GLOBALES USADAS */
 let fechaapi = '';
 let visited = [];
 let aleatorio=0
 let dict = {};
+
+/* LISTA DE FECHAS DONDE SE ENCUENTRAN LAS MEJORES IMAGENES DEL DIA PARA ZONA RANDOM */
 let imagelist = [
   "2022-02-12",
   "2022-05-04",
@@ -230,6 +238,8 @@ let imagelist = [
   "2015-11-03",
   "2015-11-01",
 ];
+
+/* LISTA DE FECHAS DONDE SE ENCUENTRAN LOS MEJORES VIDEOS DEL DIA PARA ZONA RANDOM */
 let videolist = [
   "2021-01-11",
   "2015-10-28",
@@ -280,13 +290,14 @@ const Estadoinicial = {
   contentBox: '',
   imagesrc:'',
   hdimagesrc : '',
+  /* LIVE ESTACION INTERNACIONAL VIDEO */
   videosrc: '//www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1',
   datebox: '',
   history: '',
   Data: '',
 };
 
-// APOD = Astronomy Picture of the Day
+// APOD = FUNCION FECH API Y TOMA DE DATOS Astronomy Picture of the Day
 const APOD = async () => {
   const API =
     'https://api.nasa.gov/planetary/apod?api_key=' +
