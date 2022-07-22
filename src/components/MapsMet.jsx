@@ -1,4 +1,4 @@
-/* COMPONENTE (MAPA) UBICACION TEREORITOS REGISTRADOS NASA */
+/* COMPONENTE (MAPA) UBICACION METEORITOS REGISTRADOS NASA */
 /* ------------------------------------------------------- */
 /* Importaciones necesarias */
 import React, { useRef, useEffect, useState } from 'react';
@@ -25,7 +25,7 @@ try {
   console.error(error);
 }
 /* clave concedida por Mapbox */
- mapboxgl.accessToken='pk.eyJ1IjoiZ2EtZWR1YXJkbyIsImEiOiJjbDVmNzQyY3kwaHJpM2pvM29lOWVuZnVlIn0.a20bgkRxwewC43RomqCQ9g';
+ mapboxgl.accessToken='YOUR API-KEY';
  
 
 function MapsMet() {
@@ -109,7 +109,7 @@ function MapsMet() {
       });
     });
     document.getElementById('NA').addEventListener('click', () => {
-      // Fly to a random location
+      // VUELA A COORDENADAS DE NORTE-AMERICA
       map.flyTo({
         center: [-96, 42],
         zoom: 2.45,
@@ -118,7 +118,7 @@ function MapsMet() {
       });
     });
     document.getElementById('SA').addEventListener('click', () => {
-      // Fly to a random location
+      // VUELA A COORDENADAS DE SUR-AMERICA
       map.flyTo({
         center: [-63, -24],
         zoom: 2.45,
@@ -127,7 +127,7 @@ function MapsMet() {
       });
     });
     document.getElementById('EU').addEventListener('click', () => {
-      // Fly to a random location
+      // VUELA A COORDENADAS DE EUROPA
       map.flyTo({
         center: [11, 48],
         zoom: 3.45,
@@ -136,7 +136,7 @@ function MapsMet() {
       });
     });
     document.getElementById('AF').addEventListener('click', () => {
-      // Fly to a random location
+      // VUELA A CORRDENADAS DE AFRICA
       map.flyTo({
         center: [24, 5.1],
         zoom: 2.22,
@@ -145,7 +145,7 @@ function MapsMet() {
       });
     });
     document.getElementById('AS').addEventListener('click', () => {
-      // Fly to a random location
+      // VUELA A COORDENADAS DE ASIA
       map.flyTo({
         center: [79.8, 26],
         zoom: 3,
@@ -154,7 +154,7 @@ function MapsMet() {
       });
     });
     document.getElementById('OC').addEventListener('click', () => {
-      // Fly to a random location
+      // VUELA A COORDENADAS DE OCEANIA
       map.flyTo({
         center: [134, -23],
         zoom: 2,

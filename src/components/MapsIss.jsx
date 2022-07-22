@@ -30,7 +30,7 @@ fetch(url)
 let map=""
 
 /* clave concedida por Mapbox */
- mapboxgl.accessToken='pk.eyJ1IjoiZ2EtZWR1YXJkbyIsImEiOiJjbDVmNzQyY3kwaHJpM2pvM29lOWVuZnVlIn0.a20bgkRxwewC43RomqCQ9g';
+ mapboxgl.accessToken='YOUR API-KEY';
 
 const MapsIss = () => {
 

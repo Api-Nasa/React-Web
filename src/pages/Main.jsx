@@ -16,7 +16,7 @@ import '../styles/main.css'; /* ESTILOS PRINCIPALES PROYECTO */
 import atom from '../assets/gifs/atom.gif';
 
 /* API kEY NASA-APOD */
-const apikey = 'kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t';
+const apikey = 'YOUR API KEY';
 
 /* VARIABLE GLOBALES USADAS */
 let fechaapi = '';
@@ -642,8 +642,8 @@ export default function Main() {
   
    Estadoinicial.title=" International Space Station [ISS] LIVE"
   return (
-    <div class="container-fluid todo animate__animated animate__fadeIn">
-      <div class="row">
+    <div className="container-fluid todo animate__animated animate__fadeIn">
+      <div className="row">
         {/* zona para titulos y botones -----------------------------------------------------------*/}
         <div className="col-12 col-titulo ">
           <div className="cabecera">
@@ -693,22 +693,22 @@ export default function Main() {
         </div>
 
         {/* zona para opciones aside ------------------------------------------------------------- */}
-        <div class="col-2  aside ">
-          <div class="div-flex">
+        <div className="col-2  aside ">
+          <div className="div-flex">
             <Link to="/Meteors">
-              <button type="button" class="btn btn-primary button-meteors ">
+              <button type="button" className="btn btn-primary button-meteors ">
                 Go to Meteorite Map
               </button>
             </Link>
           </div>
-          <div class="div-flex">
+          <div className="div-flex">
             <Link to="/Iss">
-              <button type="button" class="btn btn-primary button-meteors ">
+              <button type="button" className="btn btn-primary button-meteors ">
                 Go to Map ISS Location
               </button>
             </Link>
           </div>
-          <div class="div-flex">
+          <div className="div-flex">
             <button
               className="btn btn-outline-secondary history oculto"
               type="button"
@@ -742,9 +742,9 @@ export default function Main() {
 
         {/* zona para contenido ------------------------------------------------------------------- */}
 
-        <div id="contenido" class="col-10 contenido ">
-          <div class="collapse marginbotton1rem" id="collapseCalendar">
-            <div class="card card-body mensaje-gris-oscuro animate__animated animate__fadeIn">
+        <div id="contenido" className="col-10 contenido ">
+          <div className="collapse marginbotton1rem" id="collapseCalendar">
+            <div className="card card-body mensaje-gris-oscuro animate__animated animate__fadeIn">
               <div
                 style={{
                   margin: 'auto',
@@ -773,7 +773,7 @@ export default function Main() {
                 />
                 <button
                   type="button"
-                  class="btn btn-secondary btn-lg boton-fecha button-apply"
+                  className="btn btn-secondary btn-lg boton-fecha button-apply"
                   onClick={e =>
                     dispatch({
                       type: 'APPLYDATE',
@@ -786,9 +786,9 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div class="collapse marginbotton1rem" id="collapseHistory">
-            <div class="card card-body mensaje-gris-oscuro">
-              <p class="animate__animated animate__fadeIn">
+          <div className="collapse marginbotton1rem" id="collapseHistory">
+            <div className="card card-body mensaje-gris-oscuro">
+              <p className="animate__animated animate__fadeIn">
                 El historial de su navegación en esta página se almacena
                 exclusivamente en el Caché de su navegador. Usted puede remover
                 ese registro en cualquier momento. Así mismo un par:
@@ -799,7 +799,7 @@ export default function Main() {
                 en todo el mundo hablan español, según el último anuario del
                 Instituto Cervantes. (14 de Octubre 2021){' '}
               </p>
-              <p class="animate__animated animate__fadeIn white">
+              <p className="animate__animated animate__fadeIn white">
                 Your browsing history on this site is stored exclusively in your
                 browser's storage. You can remove this record at any time. Also
                 a pair: key/value, is in charge of showing you again any of the
@@ -809,7 +809,7 @@ export default function Main() {
               <div className="div-flex">
                 <button
                   type="button"
-                  class="btn btn-danger btn-sm fit-button animate__animated animate__heartBeat"
+                  className="btn btn-danger btn-sm fit-button animate__animated animate__heartBeat"
                   onClick={e =>
                     dispatch({
                       type: 'LIMPIARSTORAGE',
@@ -821,7 +821,7 @@ export default function Main() {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-secondary btn-sm fit-button "
+                  className="btn btn-secondary btn-sm fit-button "
                   onClick={e =>
                     dispatch({
                       type: 'NOTREMOVE',
@@ -834,10 +834,10 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div class="collapse marginbotton1rem " id="collapsefavoritos">
+          <div className="collapse marginbotton1rem " id="collapsefavoritos">
             <div
               id="colapsefavoritos"
-              class="card card-body mensaje-gris-oscuro collapse-mobile"
+              className="card card-body mensaje-gris-oscuro collapse-mobile"
             >
               <p className="animate__animated animate__fadeIn center">
                 We have selected the images and videos that we we liked the
@@ -846,7 +846,7 @@ export default function Main() {
               <div className="cabecera">
                 <button
                   type="button"
-                  class="btn btn-secondary btn-sm fit-button"
+                  className="btn btn-secondary btn-sm fit-button"
                   onClick={e =>
                     dispatch({
                       type: 'FAVORITOS',
@@ -859,7 +859,7 @@ export default function Main() {
 
                 <button
                   type="button"
-                  class="btn btn-secondary btn-sm fit-button"
+                  className="btn btn-secondary btn-sm fit-button"
                   onClick={e =>
                     dispatch({
                       type: 'VIDEOFAVORITOS',
@@ -873,7 +873,7 @@ export default function Main() {
               <div className="div-flex">
                 <button
                   type="button"
-                  class="close btn btn-outline-secondary btn-sm fit-button"
+                  className="close btn btn-outline-secondary btn-sm fit-button"
                   data-dismiss="alert"
                   aria-label="Close"
                   onClick={e =>
@@ -888,16 +888,16 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div class="collapse marginbotton1rem" id="collapseExplanation">
+          <div className="collapse marginbotton1rem" id="collapseExplanation">
             <div
               id="colapseexplanation"
-              class="card card-body mensaje-gris-oscuro"
+              className="card card-body mensaje-gris-oscuro"
             >
               <p id="explanation">{state.explanation}</p>
               <p id="dateresourse">Resourse Date: {fechaapi}</p>
               <button
                 type="button"
-                class="btn btn-secondary btn-sm fit-button"
+                className="btn btn-secondary btn-sm fit-button"
                 onClick={e =>
                   dispatch({
                     type: 'CLOSEEXPLANATION',
@@ -934,7 +934,7 @@ export default function Main() {
             <button
               type="button"
               id="hd"
-              class="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
+              className="btn btn-outline-secondary button-in-collapse animate__animated animate__slideInRight"
               onClick={e =>
                 dispatch({
                   type: 'HIGHTDEFINITION',
@@ -947,7 +947,7 @@ export default function Main() {
             <button
               type="button"
               id="deleteimage"
-              class="btn btn-outline-danger button-in-collapse animate__animated animate__slideInRight"
+              className="btn btn-outline-danger button-in-collapse animate__animated animate__slideInRight"
               onClick={e =>
                 dispatch({
                   type: 'DELETEIMAGE',
@@ -960,7 +960,7 @@ export default function Main() {
             <button
               type="button"
               id="nextrandom"
-              class="btn btn-outline-info button-in-collapse animate__animated animate__slideInRight "
+              className="btn btn-outline-info button-in-collapse animate__animated animate__slideInRight "
               onClick={e =>
                 dispatch({
                   type: 'MENURANDOM',
@@ -1050,27 +1050,27 @@ export default function Main() {
               alt="fundación Adecco"
             />
           </div>
-          <div class="div-flex">
+          <div className="div-flex">
             <Link to="/Meteors">
               <button
                 type="button"
-                class="btn btn-primary button-meteors map-oculto"
+                className="btn btn-primary button-meteors map-oculto"
               >
                 Go to Meteorite Map
               </button>
             </Link>
           </div>
-          <div class="div-flex">
+          <div className="div-flex">
             <Link to="/Iss">
               <button
                 type="button"
-                class="btn btn-primary button-meteors map-oculto"
+                className="btn btn-primary button-meteors map-oculto"
               >
                 Go to Map ISS Location
               </button>
             </Link>
           </div>
-          <div class="div-flex">
+          <div className="div-flex">
             <button
               className="btn btn-outline-secondary history history-oculto"
               type="button"

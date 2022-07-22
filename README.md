@@ -95,7 +95,8 @@ root.render(
 reportWebVitals();
 
 ```
-
+## several unit tests performed
+![unit test](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658485450/API-GA/prueba_unitaria3_bfrycc.png)
 >>>>>>> Private and protected Mapbox password (If you Fork the project you need to get your own)
 ```
 mapboxgl.accessToken = process.env.REACT_APP_API_KEY;

@@ -14,7 +14,7 @@ export default function Meteors() {
           </button>
         </Link>
         <img src={asteroid} className="App-logo  " alt="gif asteroid" />
-        <div class="titulo animate__animated animate__zoomIn ">
+        <div className="titulo animate__animated animate__zoomIn ">
           <img src={atom} className="App-logo logo-peq " alt="gif atom" />
           <p className="titulo-landing ">
             Discover the known locations where meteorites have fallen{' '}

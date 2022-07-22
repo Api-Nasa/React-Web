@@ -14,7 +14,7 @@ export default function Error404() {
 
         {/* BOTON PARA LINK TO MAIN */}
         <Link to="/Main">
-          <button type="button" class="btn btn-primary  ">
+          <button type="button" className="btn btn-primary  ">
             Get started for discover
           </button>
         </Link>
