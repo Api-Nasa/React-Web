@@ -16,7 +16,8 @@
 - We have decided to work as a team as a practice of collaborative work in Web development.
 - project by [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
 - If you want to see the principal initial wireframe of this project, you see here [INITIAL WIREFRAME](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658301121/API-GA/dise%C3%B1o_zvjwlz.png)
--  First meeting between Claudia and Eduardo [HOW TO START](https://res.cloudinary.com/dquxfl0fe/image/upload/v1655767968/API-GA/primeras_ideas_gwigsq.png)
+- First meeting between Claudia and Eduardo [HOW TO START](https://res.cloudinary.com/dquxfl0fe/image/upload/v1655767968/API-GA/primeras_ideas_gwigsq.png)
+- Project Considerations and Acknowledgements in PDF format [PDF](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658783879/API-GA/guion_proyecto_final_en-GB_ymdtp9.pdf)
 
 
    

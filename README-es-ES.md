@@ -16,6 +16,8 @@
 -   proyecto realizado por [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
 - En el siguiente enlace puedes ver el esquema principal del proyecto. [INITIAL WIREFRAME](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658301121/API-GA/dise%C3%B1o_zvjwlz.png)
 - Primera toma de contacto entre Claudia y Eduardo [COMO EMPEZAR](https://res.cloudinary.com/dquxfl0fe/image/upload/v1655767968/API-GA/primeras_ideas_gwigsq.png)
+- Consideraciones del proyecto y agradecimientos en [PDF](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658782733/API-GA/guion_proyecto_final_guddc3.pdf)
+
 
    
 <div style="display:flex;border:solid 3px;border-color:white;border-radius:2rem;width:fit-content;margin:2rem;background-color:rgb(60, 108, 163)">
