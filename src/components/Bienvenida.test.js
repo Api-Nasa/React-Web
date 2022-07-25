@@ -9,7 +9,7 @@ import Bienvenida from './Bienvenida';
 /* comprobaremos si renderiza bien */
 /* utilizando el titulo solicitado */
 
-test('renders react component', async () => {
+test('probrando renderizado', async () => {
   render(
     <Router>
       <Bienvenida />

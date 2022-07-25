@@ -16,7 +16,7 @@ import '../styles/main.css'; /* ESTILOS PRINCIPALES PROYECTO */
 import atom from '../assets/gifs/atom.gif';
 
 /* API kEY NASA-APOD */
-const apikey = 'YOUR API KEY';
+const apikey = 'kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t';
 
 /* VARIABLE GLOBALES USADAS */
 let fechaapi = '';
@@ -284,6 +284,7 @@ let videolist = [
   "2015-11-02",
 ];
 
+// variables usadas (Estado inicial)
 const Estadoinicial = {
   title: '',
   fecha: '',
@@ -297,14 +298,11 @@ const Estadoinicial = {
   Data: '',
 };
 
+
 // APOD = FUNCION FECH API Y TOMA DE DATOS Astronomy Picture of the Day
 const APOD = async () => {
   const API =
-    'https://api.nasa.gov/planetary/apod?api_key=' +
-    apikey +
-    '&date=' +
-    fechaapi +
-    '&hd=true';
+    'https://api.nasa.gov/planetary/apod?api_key=' + apikey +'&date=' +  fechaapi +'&hd=true';
 
   try {
     const fetchData = await fetch(API);
@@ -313,26 +311,23 @@ const APOD = async () => {
     Estadoinicial.imagesrc = Estadoinicial.Data.url;
     Estadoinicial.hdimagesrc = Estadoinicial.Data.hdurl;
     Estadoinicial.explanation = Estadoinicial.Data.explanation;
-
     const botoneselemento = document.getElementById('botones-elemento');
     botoneselemento.style.display="inline-block"
     const photo = document.getElementById('fotodeldia');
     const video = document.getElementById('div-video');
     const titulo = document.querySelector('#head');
-    
-
     titulo.innerHTML = Estadoinicial.title;
     photo.src = Estadoinicial.imagesrc;
     const explanation = document.getElementById('explanation');
     explanation.innerHTML = Estadoinicial.Data.explanation;
-    /*  miniatura.src = Estadoinicial.imagesrc;  */
-     const deleteimage = document.getElementById('deleteimage');
-     deleteimage.style.display="inline-block"
-     const hd = document.getElementById('hd');
-     hd.style.display="inline-block"
+    const deleteimage = document.getElementById('deleteimage');
+    deleteimage.style.display="inline-block"
+    const hd = document.getElementById('hd');
+    hd.style.display="inline-block"
     const nextrandom = document.getElementById('nextrandom');
     nextrandom.style.display="inline-block"
 
+    // ASIGNACIONES SEGUN EL TIPO DE MEDIO (IMAGE/VIDEO)
 
     if (Estadoinicial.Data.media_type === 'video') {
       
@@ -346,7 +341,6 @@ const APOD = async () => {
       photo.style.display = 'none';
       const botoneselemento = document.getElementById('botones-elemento');
       botoneselemento.style.display="none"
-      /*  miniatura.style.display ="none" */
       document.getElementById('video').src = urlreducida;
     } else {
       if (Estadoinicial.Data.media_type === 'image') {
@@ -355,6 +349,9 @@ const APOD = async () => {
         deleteimage.style.display="inline-block"
         const videoplay = document.getElementById('video');
         videoplay.src = '';
+
+        // SE AÑADIRAN (SI NO EXISTEN), IMAGENES VISITADAS 
+        // TANTO A LISTA, DICCIONARIO COMO REGISTRO EN LOCALSTORAGE
         if (!visited.includes(Estadoinicial.imagesrc)) {
           visited.unshift(Estadoinicial.imagesrc);
           localStorage.setItem('historialvisitas', JSON.stringify(visited));
@@ -362,13 +359,13 @@ const APOD = async () => {
           localStorage.setItem('diccionario', JSON.stringify(dict));
           console.log(visited);
         }
+        // MUESTRA IMAGEN DE UN ASTRONAUTA CUANDO NO ENCUENTRA RECURSO SOLICITADO
+        // Y MENSAJE Y EXPLICACION DE RECURSO NO ENCONTRADO
       } else {
         video.style.display = 'none';
         video.src = '';
         photo.style.display = 'block';
-        /*   miniatura.style.display ="block" */
         photo.src = "https://res.cloudinary.com/dquxfl0fe/image/upload/v1657344274/API-GA/astronauta_ulcwcc.jpg";
-        /*   miniatura.src=astronauta */
         titulo.innerHTML = 'Recurso no encontrado ';
         const explanation = document.getElementById('explanation');
         explanation.innerHTML =
@@ -379,7 +376,9 @@ const APOD = async () => {
     
   } catch (error) {
     console.log(error);
-     }
+    }
+
+  // MUESTRA EL BOTON DE ELIMINAR HISTORIAL EN CUANTO LA LISTA SEA >1   
   if (visited.length > 1) {
     const history = document.getElementById('history');
     history.style.display = 'block';
@@ -389,9 +388,11 @@ const APOD = async () => {
   }
 };
 
+// FUNCION REDUCER PARA CASOS DE DISPACHT (CUANDO SE DISPARA EVENTO)
 function reducer(state = Estadoinicial, action) {
  
   switch (action.type) {
+    // MOSTRARA LA FOTO DEL DIA
     case 'TODAYPHOTO': {
       fechaapi = new Date().toJSON().slice(0, 10);
       fechaapi = fechaapi.toString();
@@ -405,14 +406,15 @@ function reducer(state = Estadoinicial, action) {
       };
     }
     case 'LOADPHOTO': {
+      // REGISTRA FECHA CALENDARIO Y ESPERA CONFIRMACION APPLY
       state.fecha = action.payload.id;
       fechaapi = state.fecha;
       fechaapi = fechaapi.toString();
-
       return {
         ...state,
       };
     }
+    // RECABA DATOS DE IMAGENES LATERALES DE HISTORIAL
     case 'CLICKMINIATURA': {
       const photo = document.getElementById('fotodeldia');
       const hd = document.getElementById('hd');
@@ -424,40 +426,37 @@ function reducer(state = Estadoinicial, action) {
       photo.src = action.payload.link;
       photo.imageSrc = action.payload.link;
       fechaapi = dict[action.payload.link];
-
       APOD();
       const explanation = document.getElementById('explanation');
       explanation.innerHTML = Estadoinicial.explanation;
-
       window.scroll({
         top: 0,
         left: 0,
         behavior: 'smooth',
       });
-
       return {
         ...state,
       };
     }
+    // LIMPIA EL REGISTRO DE HISTORIAL TANTO EN LISTA
+    // COMO EN LOCALSTORAGE
     case 'LIMPIARSTORAGE': {
       localStorage.removeItem('historialvisitas');
       document.querySelector('#history').click();
       visited = [];
-
       APOD();
-      /*  const history = document.getElementById('#history');
-    history.style.display = "none"  */
-
       return {
         ...state,
       };
     }
+    // EN ESTE CASO SE CANCELA EL BORRADO DE HISTORIAL
     case 'NOTREMOVE': {
        document.querySelector('#history').click();
       return {
         ...state,
       };
     }
+    // EN ESTE CASO SE CIERRRA EL ELEMENTO COLLAPSE DE EXPLANATION
     case 'CLOSEEXPLANATION': {
       document.querySelector('#explanationbutton').click();
       window.scroll({
@@ -465,11 +464,11 @@ function reducer(state = Estadoinicial, action) {
         left: 0,
         behavior: 'smooth',
       });
-
       return {
         ...state,
       };
     }
+    // EN ESTE CASO SE CAMBIA LA URL HABITUAL POR LA DE HD
     case 'HIGHTDEFINITION': {
       const photo = document.getElementById('fotodeldia');
       photo.src = Estadoinicial.hdimagesrc;
@@ -478,11 +477,11 @@ function reducer(state = Estadoinicial, action) {
         left: 0,
         behavior: 'smooth',
       });
-
       return {
         ...state,
       };
     }
+     // ESTE CASO ACEPTA Y EJECUTA LA FECHA ESCOGIDA DEL CALENDARIO
     case 'APPLYDATE': {
       document.querySelector('#mensaje').click();
        const videoplay = document.getElementById('video');
@@ -496,6 +495,8 @@ function reducer(state = Estadoinicial, action) {
         ...state,
       };
     }
+    // EN ESTE CASO SE HACE UN "RANDOM" SOBRE LISTADO DE IMAGENES EN LISTA DE FAVORITOS
+    // Y POSTERIORMENTE SE ENVIA FECHA A URL API PARA TRAER SUS DATOS
     case 'FAVORITOS': {
       document.querySelector('#favoritos').click();
       aleatorio = Math.floor(Math.random() * imagelist.length);
@@ -509,16 +510,18 @@ function reducer(state = Estadoinicial, action) {
         ...state,
       };
     }
+    // EN ESTE CASO SE HACE UN "RANDOM" SOBRE LISTADO DE VIDEOS EN LISTA DE FAVORITOS
+    // Y POSTERIORMENTE SE ENVIA FECHA A URL API PARA TRAER SUS DATOS
     case 'VIDEOFAVORITOS': {
       document.querySelector('#favoritos').click();
       aleatorio = Math.floor(Math.random() * videolist.length);
       fechaapi = videolist[aleatorio];
       APOD();
-      
       return {
         ...state,
       };
     }
+    // CIERRA/ABRE COLLAPSE DE FAVORITOS
     case 'MENURANDOM': {
       document.querySelector('#favoritos').click();
       window.scroll({
@@ -526,12 +529,12 @@ function reducer(state = Estadoinicial, action) {
         left: 0,
         behavior: 'smooth',
       });
-
       return {
         ...state,
       };
     }
-
+    // ELIMINA SOLO IMAGEN SELECCIONADA TANTO DE LA LISTA Y DICT
+    // COMO DE LOCALSTORAGE
     case 'DELETEIMAGE': {
       delete dict[Estadoinicial.imagesrc];
       visited = visited.filter(item => item !== Estadoinicial.imagesrc);
@@ -559,68 +562,70 @@ function reducer(state = Estadoinicial, action) {
         ...state,
       };
     }
-    
+    // ABRE URL SEGUN DISPACHT BOTON NASA
     case 'NASALINK': {
       window.open('https://www.nasa.gov/nasalive', '_blank');
-
       return {
         ...state,
       };
     }
+     // ABRE URL SEGUN DISPACHT BOTON ADECCO
     case 'ADECCOLINK': {
       window.open('https://fundacionadecco.org/', '_blank');
-
       return {
         ...state,
       };
     }
+     // ABRE URL SEGUN DISPATCH BOTON GENERAL ASSEMBLY
     case 'GALINK': {
       window.open('https://generalassemb.ly/', '_blank');
-
       return {
         ...state,
       };
     }
+   
+    // RECIBE DISPATCH PARA SUBIR SCROLL TOP
     case 'SUBIRSCROLL': {
       window.scroll({
     top: 0,
     left: 0,
     behavior: 'smooth',
   });
-
-
       return {
         ...state,
       };
     }
+    // CASE DEFAULT
     default: {
       return { ...state };
     }
   }
 }
+
+
+
+// LLAMADA A FUNCION INICIO PROGRAMA (COMENZAR)
 comenzar();
+
 document.addEventListener('readystatechange', event => {
-  // When HTML/DOM elements are ready:
+  // Cuando elementos HTML/DOM estan listos
   if (event.target.readyState === 'interactive') {
     //does same as:  ..addEventListener("DOMContentLoaded"..
     console.log("ok")
   }
-
   // When window loaded ( external resources are loaded too- `css`,`src`, etc...)
   if (event.target.readyState === 'complete') {
-    console.log('ok');
+    console.log('ok. estado completo de carga');
     Estadoinicial.imagesrc= '//www.youtube.com/embed/86YLFOog4GM?autoplay=1&mute=1&enablejsapi=1'
-
-    
-    
-     
   }
 });
 
+// funcion inicial que toma fecha del dia para variable global
+// toma lectura de posible historial en Localstorage
 function comenzar() {
+  
   fechaapi = new Date().toJSON().slice(0, 10);
   fechaapi = fechaapi.toString();
-
   visited = JSON.parse(localStorage.getItem('historialvisitas'));
   dict = JSON.parse(localStorage.getItem('diccionario'));
   if (visited === null) {
@@ -636,16 +641,18 @@ function comenzar() {
 }
 
 
-
+// FUNCION PRINCIPAL QUE ESCUCHA ESTADOS Y RENDERIZA 
 export default function Main() {
+  // NECESARIO PARA RESPONDER O DESPACHAR ACCIONES (USEREDUCER)
   const [state, dispatch] = useReducer(reducer, Estadoinicial);
-  
-   Estadoinicial.title=" International Space Station [ISS] LIVE"
+  Estadoinicial.title=" International Space Station [ISS] LIVE"
   return (
     <div className="container-fluid todo animate__animated animate__fadeIn">
       <div className="row">
         {/* zona para titulos y botones -----------------------------------------------------------*/}
         <div className="col-12 col-titulo ">
+          {' '}
+          {/* VER WIREFRAME EN README.MD */}
           <div className="cabecera">
             <img src={atom} className=" logo-speq " alt="gif atom" />
             <h1 className="titulo-landing titulo-cabecera">
@@ -692,7 +699,7 @@ export default function Main() {
           </div>
         </div>
 
-        {/* zona para opciones aside ------------------------------------------------------------- */}
+        {/* zona para opciones aside (VER WIREFRAME)-------------------------------------------------- */}
         <div className="col-2  aside ">
           <div className="div-flex">
             <Link to="/Meteors">
@@ -740,9 +747,10 @@ export default function Main() {
           </div>
         </div>
 
-        {/* zona para contenido ------------------------------------------------------------------- */}
+        {/* zona para contenido (VER WIREFRAME)----------------------------------------------------- */}
 
         <div id="contenido" className="col-10 contenido ">
+          {/* ZONA DE APERTURA COLLAPSE CALENDARIO */}
           <div className="collapse marginbotton1rem" id="collapseCalendar">
             <div className="card card-body mensaje-gris-oscuro animate__animated animate__fadeIn">
               <div
@@ -753,6 +761,7 @@ export default function Main() {
                 }}
               >
                 <h4>Every day a photo, a video, or a game</h4>
+                {/* COMPONENTE CALENDARIO */}
                 <TextField
                   style={{ width: '30vw' }}
                   id="date"
@@ -760,7 +769,6 @@ export default function Main() {
                   label="Choose your day"
                   type="date"
                   value={state.fecha}
-                  /*  defaultValue={state.Data.date} */
                   onInput={e =>
                     dispatch({
                       type: 'LOADPHOTO',
@@ -786,6 +794,7 @@ export default function Main() {
               </div>
             </div>
           </div>
+          {/* ZONA COLLAPSE BORRAR HISTORIAL */}
           <div className="collapse marginbotton1rem" id="collapseHistory">
             <div className="card card-body mensaje-gris-oscuro">
               <p className="animate__animated animate__fadeIn">
@@ -834,6 +843,7 @@ export default function Main() {
               </div>
             </div>
           </div>
+          {/* ZONA COLLAPSE FAVORITOS */}
           <div className="collapse marginbotton1rem " id="collapsefavoritos">
             <div
               id="colapsefavoritos"
@@ -888,6 +898,7 @@ export default function Main() {
               </div>
             </div>
           </div>
+          {/* ZONA COLLAPSE EXPLICACION DEL RECURSO (IMAGEN O VIDEO) */}
           <div className="collapse marginbotton1rem" id="collapseExplanation">
             <div
               id="colapseexplanation"
@@ -971,6 +982,7 @@ export default function Main() {
               Random Menu
             </button>
           </div>
+          {/* COMPONENTE IMPORTADO QUE ENVUELVE IMAGEN Y SE ENCARGA DEL ZOOM */}
           <TransformWrapper
             Scale={1}
             defaultScale={1}
@@ -987,6 +999,7 @@ export default function Main() {
             </TransformComponent>
           </TransformWrapper>
 
+          {/* ZONA (IFRAME) VIDEO AND PHP GAME */}
           <div id="div-video" className="video-responsive">
             <iframe
               id="video"
@@ -1104,6 +1117,7 @@ export default function Main() {
                     payload: { link: url, index: url },
                   })
                 }
+               
               />
             ))}
           </div>

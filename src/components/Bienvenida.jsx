@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import '../styles/App.css'; /* pequeñas modificaciones de estilo al original de create react-app */
 import atom from '../assets/gifs/atom.gif';/* importacion local de gif de un Atomo (Guiño a React y Nasa) */
 
+
+
 export default function Bienvenida() {
   return (
     <div className="App animate__animated animate__fadeIn">
@@ -31,4 +33,5 @@ export default function Bienvenida() {
       </header>
     </div>
   );
+ 
 }

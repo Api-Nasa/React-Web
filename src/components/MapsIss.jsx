@@ -17,20 +17,24 @@ let url = 'https://api.wheretheiss.at/v1/satellites/25544';
 let myJson = ""
 
 /* llamada sincrona a la API */
-fetch(url)
-    .then(function (response) {
+try {
+  fetch(url)
+    .then(function(response) {
       return response.json();
     })
-    .then(function (data) {
+    .then(function(data) {
       console.log(data);
-      myJson = data
-})
+      myJson = data;
+    });
+} catch (error) {
+  console.error(error);
+ }
   
 /* variable definición mapa */
 let map=""
 
 /* clave concedida por Mapbox */
- mapboxgl.accessToken='YOUR API-KEY';
+ mapboxgl.accessToken='pk.eyJ1IjoiZ2EtZWR1YXJkbyIsImEiOiJjbDVmNzQyY3kwaHJpM2pvM29lOWVuZnVlIn0.a20bgkRxwewC43RomqCQ9g';
 
 const MapsIss = () => {
 

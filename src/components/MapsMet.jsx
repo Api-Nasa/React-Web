@@ -25,7 +25,8 @@ try {
   console.error(error);
 }
 /* clave concedida por Mapbox */
- mapboxgl.accessToken='YOUR API-KEY';
+ mapboxgl.accessToken =
+   'pk.eyJ1IjoiZ2EtZWR1YXJkbyIsImEiOiJjbDVmNzQyY3kwaHJpM2pvM29lOWVuZnVlIn0.a20bgkRxwewC43RomqCQ9g';
  
 
 function MapsMet() {
@@ -69,7 +70,7 @@ function MapsMet() {
           marker.addTo(map);
         } catch (error) {
           console.error(error);
-        }
+          }
       };
       map.on('load', addMarker);
 
