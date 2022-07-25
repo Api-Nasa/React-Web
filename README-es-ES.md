@@ -28,7 +28,7 @@
 
 - Hooks usados   `useState`, `useReducer`, `useRef`, `useEffects` 
 
-- Según a sido oportuno, hemos usado Frameworks o librerias como `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
+- Según cada caso, hemos usado Frameworks o librerias como `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
 - Hemos usado nuestra propia CDN (Cloudinary) para alojar los medios del proyecto
 - Hemos usado el software de Screenpresso como herramienta digital preferida para creación y edición de nuestros wireframes.
 --------------------------------------
