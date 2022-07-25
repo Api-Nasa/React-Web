@@ -16,7 +16,7 @@ import '../styles/main.css'; /* ESTILOS PRINCIPALES PROYECTO */
 import atom from '../assets/gifs/atom.gif';
 
 /* API kEY NASA-APOD */
-const apikey = 'kadmSLpXgRgSyk6BFuvcflgvpPTYq12zQ3uaou9t';
+const apikey = 'YOUR API KEY';
 
 /* VARIABLE GLOBALES USADAS */
 let fechaapi = '';
