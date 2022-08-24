@@ -1,26 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/App.css';
-import atom from '../assets/gifs/atom.gif';
-import asteroid from '../assets/gifs/asteroid.gif';
+import PantallaPresentacion from '../components/PantallaPresentacion';
 
-export default function Meteors() {
+function Meteors() {
+  const data = {
+    urlIcono:
+      'https://res.cloudinary.com/dquxfl0fe/image/upload/c_scale,r_30,w_290/a_0/v1661277579/API-GA/asteroid_mq32m3.gif',
+    altIcono: 'Meteor',
+    link: '/MapsMeteors',
+    tituloPresentacion:
+      'Discover the known locations where meteorites have fallen',
+  };
   return (
-    <div className="App animate__animated animate__zoomIn">
-      <header className="App-header">
-        <Link to="/MapsMeteors">
-          <button type="button" className='btn btn-primary api-btn '>
-            Get started for discover
-          </button>
-        </Link>
-        <img src={asteroid} className="App-logo  " alt="gif asteroid" />
-        <div className="titulo animate__animated animate__zoomIn ">
-          <img src={atom} className="App-logo logo-peq " alt="gif atom" />
-          <p className="titulo-landing ">
-            Discover the known locations where meteorites have fallen{' '}
-          </p>
-        </div>
-      </header>
+    <div>
+      <PantallaPresentacion data={data} />
     </div>
   );
 }
+
+export default Meteors;
+
+

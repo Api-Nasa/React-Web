@@ -7,12 +7,14 @@ import App from './App';
 import Main from "./pages/Main"
 import Meteors from './pages/Meteors';
 import Iss from './pages/Iss';
+import Fire from './pages/Fire';
 import MapsMeteors from './pages/MapsMeteors';
+import MapsForestFire from './pages/MapsForestFire';
 import MapsEstacionIss from './pages/MapsEstacionIss';
 import Error404 from "./pages/Error404"
 import reportWebVitals from './reportWebVitals';
 
-mapboxgl.accessToken ="YOUR API KEY"; 
+mapboxgl.accessToken ="your api-key"; 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,7 +25,9 @@ root.render(
       <Route path="/Main" element={<Main />} />
       <Route path="/Meteors" element={<Meteors />} />
       <Route path="/MapsMeteors" element={<MapsMeteors />} />
-      <Route path="/Iss" element={<Iss/>} />
+      <Route path="/Iss" element={<Iss />} />
+      <Route path="/Fire" element={<Fire />} />
+      <Route path="/MapsForestFire" element={<MapsForestFire />} />
       <Route path="/MapsEstacionIss" element={<MapsEstacionIss />} />
       <Route path="*" element={<Error404 />} />
     </Routes>

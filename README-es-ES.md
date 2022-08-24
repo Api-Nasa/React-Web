@@ -101,3 +101,6 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 ## Instantanea de la Url de registro de meteoritos (Minimum viable product)
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658304213/API-GA/meteors-page_hgad0n.png)
+
+## Instantanea de la Url de registro de incendios (Minimum viable product)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1661325119/API-GA/fires_zezb6b.png)

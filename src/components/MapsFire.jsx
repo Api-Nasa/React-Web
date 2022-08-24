@@ -1,4 +1,4 @@
-/* COMPONENTE (MAPA) UBICACION METEORITOS REGISTRADOS NASA */
+/* COMPONENTE (MAPA) UBICACION INCENDIOS REGISTRADOS NASA */
 /* ------------------------------------------------------- */
 /* Importaciones necesarias */
 import React, { useRef, useEffect, useState } from 'react';
@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import mapboxgl from 'mapbox-gl';  /* libreria Mapas usada */
 import '../styles/Maps.css'; /* estilo para opciones en mapas */
 
-/* URL API METEORITOS REGISTRADOS */
-let url = "https://data.nasa.gov/resource/gh4g-9sfh.json";
+/* URL API WILDFIRES REGISTRADOS */
+let url =
+  'https://eonet.gsfc.nasa.gov/api/v3/events?category=wildfires';
 /* variable global para datos api-json */
 let myJson = ""
 
@@ -17,9 +18,10 @@ try {
     .then(function(response) {
       return response.json();
     })
-    .then(function(data) {
-      console.log(data);
-      myJson = data;
+    .then(function (data) {
+      console.log("incendios")
+     /*  console.log(data.events); */
+      myJson = data.events;
     });
 } catch (error) {
   console.error(error);
@@ -28,7 +30,7 @@ try {
  mapboxgl.accessToken ="your api-key";
  
 
-function MapsMet() {
+function MapsFire() {
   /* creación de referencia para permitir multiples renderizados por REF */
   const mapContainerRef = useRef(null);
   /* Definición inicial de estados */
@@ -44,31 +46,38 @@ function MapsMet() {
       style: 'mapbox://styles/mapbox/satellite-v8',
       center: [lng, lat],
       zoom: 1,
-      projection: 'globe'
-      
+      projection: 'globe',
     });
 
     
 
     /* ITERACIONES SOBRE OBJETO JSON Y SUS ELEMENTOS*/
-    for (let meteorito of myJson) {
-
+    for (let fire of myJson) {
+      console.log(fire)
       /* PREPARACION DE TEXTO QUE SE VERÁ EN POPUP DE CADA MARCADOR */ 
-      let html = '<h6> Name: ' + meteorito.name + '</h6><p>Masa en Kg: ' + parseInt(meteorito.mass) / 1000 + '</p>';
-      /* CREACIÓN DE CADA MARCADOR POR CADA METEORITO */
+       let html = '<p>no hay nada</p>'; 
+      if (fire.sources[0].id === 'InciWeb') {
+        html = '<a href="'+ fire.sources[0].url+'" target="_blank">Ver informe</a>'
+
+
+          
+      } else{html = '<p>'+fire.geometry[0].date+'</p>';}
+      
+     
+      /* CREACIÓN DE CADA MARCADOR POR CADA WILDFIRE */
+    
       let addMarker = () => {
         try {
-          const marker = new mapboxgl.Marker();
+          var el = document.createElement('div');
+          el.className = 'markerFire';
+          const marker = new mapboxgl.Marker(el);
           const minPopup = new mapboxgl.Popup({
             closeOnClick: false,
             closeButton: false,
           });
           minPopup.setHTML(html);
           marker.setPopup(minPopup);
-            marker.setLngLat([
-            meteorito.geolocation.longitude,
-            meteorito.geolocation.latitude,
-          ]);
+            marker.setLngLat(fire.geometry[0].coordinates);
           marker.addTo(map);
         } catch (error) {
           console.error(error);
@@ -181,21 +190,24 @@ function MapsMet() {
 
   return (
     <div>
-      <div className="sidebarStyle"> {/* zona o estilo para todas las opciones */}
-        <div className="lat-long">   {/* estilo para coordenadas */}
+      <div className="sidebarStyle">
+        {' '}
+        {/* zona o estilo para todas las opciones */}
+        <div className="lat-long">
+          {' '}
+          {/* estilo para coordenadas */}
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
-
         {/* BOTON QUE VA A ABRIR UN (MODAL BOOTSTRAP) CON INFORMACION SOBRE ESTE MVP*/}
         <button
           id="modal1"
           type="button"
           className="btn btn-outline-danger btn-sm fit-button animate__animated animate__heartBeat fly"
           data-bs-toggle="modal"
-          data-bs-target="#info-meteors">
+          data-bs-target="#info-meteors"
+        >
           About this (MVP)
         </button>
-
         <div className="fly">
           {/* ZONA DE OPCIONES DEL DROPDOWN */}
           <div class="dropdown">
@@ -204,7 +216,8 @@ function MapsMet() {
               type="button"
               id="opciones"
               data-bs-toggle="dropdown"
-              aria-expanded="false">
+              aria-expanded="false"
+            >
               Available Options Menu for this MPV Version
             </button>
             <ul
@@ -264,8 +277,9 @@ function MapsMet() {
       {/* DIV (POR REFERENCIA) PARA RENDERIZAR EL MAPA EN MULTIPLES OCASIONES */}
       <div className="map-container" ref={mapContainerRef} />
 
-       {/* CONTENIDO DEL MODAL BOOTSTRAP (INFORMACION DE PROTOTIPO O MVP) */}
-      <div className="modal fade mymodal "
+      {/* CONTENIDO DEL MODAL BOOTSTRAP (INFORMACION DE PROTOTIPO O MVP) */}
+      <div
+        className="modal fade mymodal "
         id="info-meteors"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
@@ -286,15 +300,14 @@ function MapsMet() {
             </div>
             <div className="modal-body mymodal">
               <p className="blue-text">
-                Geolocation of locations based on a Nasa API using a large
-                dataset from the Meteoritical Society containing information on
-                all known meteorite landings.
+                Geolocation of locations based on a Nasa API containing
+                information on registered forest indidents.
               </p>
-              <div classname="flex-modal">
+              <div className="flex-modal">
                 <img
                   className="img-modal"
-                  src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657993747/API-GA/meterors_arcrgl.jpg"
-                  alt="nasa-api-meteors"
+                  src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1661326031/API-GA/eonet_ag0qj1.png"
+                  alt="nasa-api-wildfires"
                 />
               </div>
 
@@ -308,8 +321,8 @@ function MapsMet() {
               <div classname="flex-modal">
                 <img
                   className="img-modal"
-                  src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657987557/API-GA/meteo1_irog03.png"
-                  alt="meteor-mapbox"
+                  src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1661325119/API-GA/fires_zezb6b.png"
+                  alt="mapa-wildfirees-mapbox"
                 />
               </div>
               <hr></hr>
@@ -320,11 +333,11 @@ function MapsMet() {
                 the current version of this application.
               </p>
               <hr></hr>
-              <div classname="flex-modal">
+              <div className="flex-modal">
                 <img
                   className="img-modal"
-                  src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657989860/API-GA/meteor2_suwanw.png"
-                  alt="meteor-mapbox"
+                  src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1661326423/API-GA/json-fires_clpkur.png"
+                  alt="json-fires"
                 />
               </div>
               <hr></hr>
@@ -347,7 +360,7 @@ function MapsMet() {
                 the following picture
               </p>
               <hr></hr>
-              <div classname="flex-modal">
+              <div className="flex-modal">
                 <img
                   className="img-modal"
                   src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657992176/API-GA/meteors4_pv74ne.png"
@@ -360,7 +373,7 @@ function MapsMet() {
                 throughout the project.
               </p>
               <hr></hr>
-              <div classname="flex-modal">
+              <div className="flex-modal">
                 <img
                   className="img-modal"
                   src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657994150/API-GA/paleta_sdyfk5.png"
@@ -415,4 +428,4 @@ function MapsMet() {
 };
 
 
-export default MapsMet;
+export default MapsFire;

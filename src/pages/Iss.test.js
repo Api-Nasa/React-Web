@@ -1,21 +1,24 @@
-
 /* importaciones necesarias para este test */
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+
+import Meteors from './Meteors';
 import Iss from './Iss';
 
-/* probamos instantanea o snapshot */
+/* comprobaremos si un nodo del dom contiene un texto*/
 
 
-test('react component snapshot', () => {
-  const view = render(
+test('el boton ha de coincidir con su tipo', () => {
+  const probar = () => <button></button>;
+  render(
     <Router>
-      <Iss/>
+      <Iss />
     </Router>,
   );
-  expect(view).toMatchSnapshot();
+  expect(
+    screen.getByText(
+      'Discover the real-time location of the international space station',
+    ),
+  ).toBeInstanceOf(Node);
 });
-
-
-  

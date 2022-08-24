@@ -16,7 +16,7 @@ import '../styles/main.css'; /* ESTILOS PRINCIPALES PROYECTO */
 import atom from '../assets/gifs/atom.gif';
 
 /* API kEY NASA-APOD */
-const apikey = 'YOUR API KEY';
+const apikey = 'your api-key';
 
 /* VARIABLE GLOBALES USADAS */
 let fechaapi = '';
@@ -709,6 +709,13 @@ export default function Main() {
             </Link>
           </div>
           <div className="div-flex">
+            <Link to="/Fire">
+              <button type="button" className="btn btn-primary button-meteors ">
+                Go to Forest Fire Map
+              </button>
+            </Link>
+          </div>
+          <div className="div-flex">
             <Link to="/Iss">
               <button type="button" className="btn btn-primary button-meteors ">
                 Go to Map ISS Location
@@ -1074,6 +1081,16 @@ export default function Main() {
             </Link>
           </div>
           <div className="div-flex">
+            <Link to="/Fire">
+              <button
+                type="button"
+                className="btn btn-primary button-meteors map-oculto"
+              >
+                Go to Forest Fire Map
+              </button>
+            </Link>
+          </div>
+          <div className="div-flex">
             <Link to="/Iss">
               <button
                 type="button"
@@ -1117,7 +1134,6 @@ export default function Main() {
                     payload: { link: url, index: url },
                   })
                 }
-               
               />
             ))}
           </div>

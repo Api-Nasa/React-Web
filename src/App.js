@@ -1,10 +1,17 @@
 import React from 'react';
-import Bienvenida from './components/Bienvenida';
+import PantallaPresentacion from './components/PantallaPresentacion';
 
 function App() {
-  return (
+  const data = {
+    urlIcono:
+      'https://res.cloudinary.com/dquxfl0fe/image/upload/v1657439542/API-GA/cool-bueno_h6o002.gif',
+    altIcono: 'Earth',
+    link: '/Main',
+    tituloPresentacion: ' React project to interact with Nasa APIs data',
+  };
+   return (
     <div>
-      <Bienvenida />
+      <PantallaPresentacion data={data} />
     </div>
   );
 }

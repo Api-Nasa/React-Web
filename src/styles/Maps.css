@@ -32,6 +32,15 @@
   cursor: pointer;
 }
 
+.markerFire {
+  background-image: url(https://res.cloudinary.com/dquxfl0fe/image/upload/v1660723980/API-GA/icons8-fire-48_ytksbt.png);
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .oculto{
   display:none
 }

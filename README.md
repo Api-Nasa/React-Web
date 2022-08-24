@@ -111,3 +111,6 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 ## Snapshot of the Meteors Url (Minimum viable product)
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658304213/API-GA/meteors-page_hgad0n.png)
+
+## Snapshot of the fire registration Url  (Minimum viable product)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1661325119/API-GA/fires_zezb6b.png)

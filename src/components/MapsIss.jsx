@@ -34,7 +34,7 @@ try {
 let map=""
 
 /* clave concedida por Mapbox */
- mapboxgl.accessToken='YOUR API KEY';
+ mapboxgl.accessToken ="your api-key";
 
 const MapsIss = () => {
 
