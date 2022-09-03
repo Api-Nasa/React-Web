@@ -208,7 +208,9 @@ margin-left: 1rem;
   margin: 0 auto;
   margin-bottom: 0.5rem;
 }
-
+.centrado{
+  text-align:center
+}
 @media (max-width: 768px) {  
   .aside{
     display:none;
@@ -230,7 +232,8 @@ margin-left: 1rem;
   display:block
 }
 .history-oculto{
-  display:block
+  display:block;
+ 
 }
 
 .map-oculto{

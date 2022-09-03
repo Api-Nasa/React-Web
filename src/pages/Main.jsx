@@ -16,7 +16,7 @@ import '../styles/main.css'; /* ESTILOS PRINCIPALES PROYECTO */
 import atom from '../assets/gifs/atom.gif';
 
 /* API kEY NASA-APOD */
-const apikey = 'your api-key';
+const apikey = 'your api key';
 
 /* VARIABLE GLOBALES USADAS */
 let fechaapi = '';
@@ -1055,15 +1055,16 @@ export default function Main() {
               }
             />
           </div>
-          <h3>
-            <center>
-              " Demostrando talento senior gracias a la Fundación Adecco "
-            </center>
+
+          <h3 className="centrado">
+            " Demostrando talento senior gracias a la Fundación Adecco "
           </h3>
-          <h5>
-            <center>Claudia Muñoz García | Eduardo Cabrera Blázquez</center>
+
+          <h5 className="centrado">
+            Claudia Muñoz García | Eduardo Cabrera Blázquez
           </h5>
-          <div className="div-flex">
+
+          <div className="div-flex ">
             <img
               src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657191232/API-GA/Fundacion-Adecco_nhqdiv.png"
               className=" imagen-flex imagenes-fondo "
@@ -1120,7 +1121,7 @@ export default function Main() {
             </button>
           </div>
           <div className="listado-oculto">
-            <center>Tu Historial visitado</center>
+            <p className='centrado'>Tu Historial visitado</p>
             <hr></hr>
             {visited.map((url, index) => (
               <img

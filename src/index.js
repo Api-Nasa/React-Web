@@ -24,9 +24,9 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="/Main" element={<Main />} />
       <Route path="/Meteors" element={<Meteors />} />
-      <Route path="/MapsMeteors" element={<MapsMeteors />} />
       <Route path="/Iss" element={<Iss />} />
       <Route path="/Fire" element={<Fire />} />
+      <Route path="/MapsMeteors" element={<MapsMeteors />} />
       <Route path="/MapsForestFire" element={<MapsForestFire />} />
       <Route path="/MapsEstacionIss" element={<MapsEstacionIss />} />
       <Route path="*" element={<Error404 />} />
