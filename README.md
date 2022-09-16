@@ -42,8 +42,8 @@
 
 - Hooks used:  `useState`, `useReducer`, `useRef`, `useEffects`
 
-- As appropriate, we have used Frameworks or libraries like `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
-- We have used our own CDN (Cloudinary) to host the project's media.
+- As appropriate, we have used Frameworks or libraries like `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`, `chart.js`, `firebase-Firestore`
+- We have used our own CDN (Cloudinary) to host the project's media, although we also have access to our own Google Cloud Storage.
 - We have used Screenpresso software as our preferred digital tool for creating and editing our wireframes.
 --------------------------------------
 --------------------------------------
@@ -114,3 +114,9 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 ## Snapshot of the fire registration Url  (Minimum viable product)
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1661325119/API-GA/fires_zezb6b.png)
+
+## Snapshot of the favorite data hosted in Google Cloud
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663324346/API-GA/react-firebase-listas_tkqdnc.png)
+
+## snapshot of visitor logs and statistics (chart.js component)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663324606/API-GA/visitas-2_zms071.png)

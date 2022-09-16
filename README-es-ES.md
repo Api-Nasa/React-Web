@@ -31,8 +31,8 @@
 
 - Hooks usados   `useState`, `useReducer`, `useRef`, `useEffects` 
 
-- Según cada caso, hemos usado Frameworks o librerias como `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`, o `react-zoom-pan-pinch`
-- Hemos usado nuestra propia CDN (Cloudinary) para alojar los medios del proyecto
+- Según cada caso, hemos usado Frameworks o librerias como `MapBox`, `Bootstrap`, `Animate.js`, `@material-ui/core`,  `react-zoom-pan-pinch`, `chart.js`, `firebase-Firestore`
+- Hemos usado nuestra propia CDN (Cloudinary) para alojar los medios del proyecto aunque tambien tenemos acceso a nuestro propio "Storage" de Google Cloud.
 - Hemos usado el software de Screenpresso como herramienta digital preferida para creación y edición de nuestros wireframes.
 --------------------------------------
 --------------------------------------
@@ -105,3 +105,10 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 ## Instantanea de la Url de registro de incendios (Minimum viable product)
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1661325119/API-GA/fires_zezb6b.png)
+
+## instantanea de datos favoritos alojados en Google Cloud
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663324346/API-GA/react-firebase-listas_tkqdnc.png)
+
+## instantanea de registros de visitas y estadisticas 
+## (componente chart.js)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663324606/API-GA/visitas-2_zms071.png)

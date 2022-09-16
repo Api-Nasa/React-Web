@@ -52,9 +52,12 @@ margin-left: 1rem;
 
 
 .logo-peq{
-  
   width:7%;
   height: auto;
+}
+
+.pointer{
+  cursor:pointer
 }
 
 

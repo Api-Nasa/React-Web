@@ -1,6 +1,7 @@
 import React from 'react';
 import PantallaPresentacion from './components/PantallaPresentacion';
 
+
 function App() {
   const data = {
     urlIcono:

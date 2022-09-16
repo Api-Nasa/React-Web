@@ -110,10 +110,8 @@ margin-top:2rem;
   color:var(--textovergrey);
   margin:2rem;
   display: flex;
+ }
  
-  
-  
-}
 .marginbotton1rem{
   padding-bottom: 1rem;
 }
@@ -123,6 +121,14 @@ margin-top:2rem;
   width:4%;
   height: auto;
   display: inline-block;
+}
+.transparente{
+ background-color:  #000;
+}
+.mychart{
+  width: 60vw;
+  margin: 0 auto;
+ 
 }
 .nasa-logo{
   width:8%;
