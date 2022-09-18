@@ -120,3 +120,6 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 ## snapshot of visitor logs and statistics (chart.js component)
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663500031/API-GA/visitas-sp_hejp0h.png)
+
+## Commits and time employed
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663502433/API-GA/estadistica_rmtlxu.png)
