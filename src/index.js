@@ -14,7 +14,7 @@ import MapsEstacionIss from './pages/MapsEstacionIss';
 import Error404 from "./pages/Error404"
 import reportWebVitals from './reportWebVitals';
 
-mapboxgl.accessToken ="your api-key"; 
+mapboxgl.accessToken ='your api key';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

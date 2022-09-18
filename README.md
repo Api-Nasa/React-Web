@@ -119,4 +119,4 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663324346/API-GA/react-firebase-listas_tkqdnc.png)
 
 ## snapshot of visitor logs and statistics (chart.js component)
-![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663324606/API-GA/visitas-2_zms071.png)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663500031/API-GA/visitas-sp_hejp0h.png)

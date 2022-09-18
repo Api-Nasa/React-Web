@@ -25,7 +25,7 @@ try {
   console.error(error);
 }
 /* clave concedida por Mapbox */
- mapboxgl.accessToken ="your api-key";
+ mapboxgl.accessToken ='your api key';
  
 
 function MapsMet() {

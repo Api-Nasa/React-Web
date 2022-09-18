@@ -111,4 +111,4 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 ## instantanea de registros de visitas y estadisticas 
 ## (componente chart.js)
-![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663324606/API-GA/visitas-2_zms071.png)
+![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663500031/API-GA/visitas-sp_hejp0h.png)

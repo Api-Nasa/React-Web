@@ -27,6 +27,7 @@ import atom from '../assets/gifs/atom.gif';
 
 /* API kEY NASA-APOD */
 const apikey = 'your api key';
+
 // chart register
 ChartJs.register(
   Title,Tooltip,LineElement,Legend,CategoryScale,LinearScale,PointElement,Filler
@@ -44,14 +45,18 @@ let visitasData = [];
 let dia = new Date().toISOString().slice(0, 10);
 
 
- 
+
+
+  //configuracion firebase
 const config = {
-  //your configuration firebase
+  //your proyect config
 };
+
+
 const app = firebase.initializeApp(config);
 const db = getFirestore(app);
 
-// bajamos el objeto json (data-firebase con lista de fechas de favoritos)
+// bajamos el objeto json (data-firebase-firestore con lista de fechas de favoritos)
 async function getListaFavoritos(db) {
   const FavoritosCol = collection(db, 'listareact');
   const usersSnapshot = await getDocs(FavoritosCol);
@@ -65,7 +70,7 @@ async function getListaFavoritos(db) {
   }
 };
   
-  // bajamos el objeto json (data-firebase con lista de visitas acunuladas)
+  // bajamos el objeto json (data-firebase con lista de visitas acumuladas)
   async function getListaVisitas(db) {
     const VisitasCol = collection(db, 'visitasNasa');
     const usersSnapshot = await getDocs(VisitasCol);
@@ -95,7 +100,7 @@ async function getListaFavoritos(db) {
 
     console.log('lista de firebase', visitasData);
     if (!visitasLabels.includes(dia)){
-      // Add a new document in collection "cities" with "LA" as id
+      // Add a new document in collection "visitasNasa"
       await setDoc(doc(db, "visitasNasa", dia), {
         fecha: dia,
         visitas: 1,
@@ -103,10 +108,10 @@ async function getListaFavoritos(db) {
       visitasLabels.push(dia);
       visitasData.push(1);
     }; 
-  }
+}
+  
   getListaFavoritos(db);
   getListaVisitas(db);
-
   
   // variables usadas (Estado inicial)
   const Estadoinicial = {
@@ -246,6 +251,7 @@ async function getListaFavoritos(db) {
     
     switch (action.type) {
       // MOSTRARA LA FOTO DEL DIA
+     
       case 'TODAYPHOTO': {
         fechaapi = new Date().toJSON().slice(0, 10);
         fechaapi = fechaapi.toString();
@@ -516,20 +522,54 @@ async function getListaFavoritos(db) {
 
   // FUNCION PRINCIPAL QUE ESCUCHA ESTADOS Y RENDERIZA 
 export default function Main() {
-  let el=""
+
+  // preparación de referencia para poder usar tooltip libreria ajena (JBOX)
+  let el = '';
+  let el2 = '';
   const ref = useRef(null);
+  const myref = useRef(null);
   useEffect(() => {
     el = ref.current;
-    console.log(el.id);
+  el2=myref.current
     new jBox('Mouse', {
       attach: '#' + el.id,
+      animation: { open: 'slide:left', close: 'flip:top' },
+      closeOnClick: true,
+      color:'blue',
+     /*  theme:'TooltipDark', */
       position: {
         x: 'right',
-        y: 'top',
+        y: 'bottom',
       },
-      content: 'Recursos Proyecto',
+      content: 'Estadistica de visitas recibidas',
     });
+    
+   
+
+   new jBox('Notice', {
+   autoClose: 3000,
+     color: 'red',
+   position: { x: 'center', y: 'center' },
+   content:
+     ' Vea las Novedades añadidas en Septiembre !!',
+   });
+     new jBox('Notice', {
+       autoClose: 3000,
+       delayOpen:3000,
+       color: 'blue',
+       position: { x: 'center', y: 'center' },
+       content:
+         'Click en el gif animado del menú para ver las Novedades de Septiembre',
+     });
+ 
+    
+    
   }, []);
+
+ 
+  
+
+  
   
   
     // NECESARIO PARA RESPONDER O DESPACHAR ACCIONES (USEREDUCER)
@@ -545,6 +585,7 @@ export default function Main() {
             <div className="cabecera">
               <button
                 id="buttonChart"
+                ref={ref}
                 type="button"
                 className="transparente"
                 data-bs-toggle="collapse"
@@ -827,7 +868,6 @@ export default function Main() {
                   <button
                     type="button"
                     id="colapseChart"
-                    ref={ref}
                     className="close btn btn-outline-secondary btn-sm fit-button"
                     data-dismiss="alert"
                     aria-label="Close"
@@ -986,9 +1026,11 @@ export default function Main() {
                 }
               />
               <img
+                id="nasa"
                 src="https://res.cloudinary.com/dquxfl0fe/image/upload/v1657194000/API-GA/nasa-logo_w5ebmi.png"
                 className=" imagen-flex nasa-logo"
                 alt="logo Nasa"
+                ref={myref}
                 onClick={e =>
                   dispatch({
                     type: 'NASALINK',
