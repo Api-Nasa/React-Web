@@ -123,3 +123,13 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 
 ## Commits and time employed
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663502433/API-GA/estadistica_rmtlxu.png)
+
+
+
+
+
+
+https://user-images.githubusercontent.com/107960254/191371512-056a05cc-80cc-41d7-9c7f-27a7f0c9223f.mov
+
+
+
