@@ -125,7 +125,6 @@ mapboxgl.accessToken = process.env.REACT_APP_API_KEY;
 ![obj Apod](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663502433/API-GA/estadistica_rmtlxu.png)
 
 ## audio of presentation in english
-https://user-images.githubusercontent.com/107960254/191371512-056a05cc-80cc-41d7-9c7f-27a7f0c9223f.mov
-
+https://user-images.githubusercontent.com/107960254/191373866-a30a0d12-bc4c-4ce7-bade-b08db6f73f85.mov
 
 
