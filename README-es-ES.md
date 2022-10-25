@@ -12,8 +12,8 @@
  - Este artículo esta redactado en español pero puedes ver su versión en [inglés](README.md)
  - ## Demo
 - Si quieres ver la demo de este proyecto desplegado, puedes visitar [Demostración proyecto API-NASA](https://react-api-nasa.netlify.app/)
-- Hemos decidido trabajar en equipo como práctica de lo que es el trabajo colaborarivo en desarrollo Web.
--   proyecto realizado por [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
+- Hemos decidido trabajar en equipo como práctica de lo que es el trabajo colaborativo en desarrollo Web.
+- Proyecto realizado por [Claudia Muñoz García](mailto:claudia.munozgarcia@gmail.com?subject=[GitHub]%20Source%20Han%20Sans) y [Eduardo Cabrera Blázquez](mailto:ecabrerablazquez@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
 - En el siguiente enlace puedes ver el esquema principal del proyecto. [INITIAL WIREFRAME](https://res.cloudinary.com/dquxfl0fe/image/upload/v1658301121/API-GA/dise%C3%B1o_zvjwlz.png)
 - Primera toma de contacto entre Claudia y Eduardo [COMO EMPEZAR](https://res.cloudinary.com/dquxfl0fe/image/upload/v1655767968/API-GA/primeras_ideas_gwigsq.png)
 - Consideraciones del proyecto y agradecimientos en [PDF](https://res.cloudinary.com/dquxfl0fe/image/upload/v1663712161/API-GA/guion_proyecto_final_presentacion_gclc0p.pdf)
