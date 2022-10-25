@@ -58,7 +58,7 @@
 
    Es importante respeccto al color conocer un poco de su psicología, y sobre todo:
     
-    - Buscar colores equilibrados: para lograrlo, respetamosa la gama cromática de la paleta escogida.
+    - Buscar colores equilibrados: para lograrlo, respetamos la gama cromática de la paleta escogida.
     - Hemos procurado no usar o abusar de otros colores, para no transmitir sensación de desorden.
 
    ![paleta usada](https://res.cloudinary.com/dquxfl0fe/image/upload/v1657994150/API-GA/paleta_sdyfk5.png)
